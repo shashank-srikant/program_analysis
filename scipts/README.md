@@ -1,7 +1,7 @@
 # Dependencies
   * TravisPy (pip install travispy)
   * Requests (pip install requests)
-  * BeautifulSoup4 (pip install beautifulsoup4)
+  * BeautifulSoup4 (pip install beautifulsoup4)<br>
  python version used 2.7
 # Info
 Regarding temporary testing codes,
