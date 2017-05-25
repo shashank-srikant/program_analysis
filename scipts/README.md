@@ -1,8 +1,9 @@
-# dependencies
+# Dependencies
   * TravisPy (pip install travispy)
   * Requests (pip install requests)
   * BeautifulSoup4 (pip install beautifulsoup4)
-# info
+ python version used 2.7
+# Info
 Regarding temporary testing codes,
 
 the script named google_log_extractor.py is basically a google crawler that fetches the url corresponding to a perticular error type and stores it in a file named result.txt
