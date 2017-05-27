@@ -23,7 +23,7 @@ def error_list(filename):
     fh2.close()
     return error
 
-def google_scrap(filename,error_list,url,headers,number_of_queries):
+def google_scrape(filename,error_list,url,headers,number_of_queries):
     try:
         fh=open(filename,'w+')
     except:
