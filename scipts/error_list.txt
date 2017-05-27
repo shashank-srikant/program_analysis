@@ -1,0 +1,2 @@
+#Enter the type of error, each seperated by a comma
+SyntaxError:,ZeroDivisionError:,NameError:,EOFError:,AssertionError:,IndentationError:,ValueError:,
