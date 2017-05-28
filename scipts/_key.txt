@@ -1,0 +1,3 @@
+On forking,
+	rename this file to key.txt
+	remove all text from this file and enter the github OAuth token only without any space or special character.
