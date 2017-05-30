@@ -16,6 +16,7 @@ class travis_user(object):
     repo_slug=''
     job=''
     commit_id=''
+    commit_sha=''
     
     def __init__(self,key):
         self.user = TravisPy.github_auth( key )
@@ -31,6 +32,9 @@ class travis_user(object):
         self.commit_id = self.job.commit_id
         self.repo_slug=self.user.repo(self.job.repository_id).slug
         self.build_id=self.job.build_id
+        build = self.user.build(self.build_id)
+        commit = build.commit
+        self.commit_sha = commit.sha
         travis_info=self.user.build(self.build_id).config
         self.travis_lang=travis_info['language']
         return [self.repo_slug,self.build_id,travis_info,self.travis_lang]
@@ -52,7 +56,7 @@ key = handle.readline()
 handle.close()
 me = travis_user(key)
 
-with open("result.txt","r")as fh:
+with open("result_1.txt","r")as fh:
     os.chdir('logs/')
     for line in fh:
         if line[0] != '#':
@@ -63,6 +67,7 @@ with open("result.txt","r")as fh:
                 me.write_log()
                 me.write_info()
                 print me.repo_slug
+                print me.commit_sha
                 print os.getcwd()
                 os.chdir('../')
                 
