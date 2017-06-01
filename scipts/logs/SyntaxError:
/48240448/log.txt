@@ -1,0 +1,2026 @@
+Using worker: worker-linux-12-1.bb.travis-ci.org:travis-linux-6
+
+travis_fold:start:system_info[0K[33;1mBuild system information[0m
+Build language: python
+[34m[1mBuild image provisioning date and time[0m
+Sat Dec 13 20:08:11 UTC 2014
+[34m[1mlsb_release -a[0m
+Distributor ID:	Ubuntu
+Description:	Ubuntu 12.04 LTS
+Release:	12.04
+Codename:	precise
+[34m[1mCookbooks Version[0m
+4f2272c https://github.com/travis-ci/travis-cookbooks/tree/4f2272c
+[34m[1mGCC version[0m
+gcc (Ubuntu/Linaro 4.6.3-1ubuntu5) 4.6.3
+Copyright (C) 2011 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+[34m[1mLLVM version[0m
+clang version 3.4 (tags/RELEASE_34/final)
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+[34m[1mPre-installed Ruby versions[0m
+ruby-1.9.3-p551
+[34m[1mPre-installed Node.js versions[0m
+v0.10.33
+[34m[1mPre-installed Go versions[0m
+go1.4
+[34m[1mRedis version[0m
+redis-server 2.8.18
+[34m[1mriak version[0m
+1.4.12
+[34m[1mMongoDB version[0m
+MongoDB 2.4.12
+[34m[1mCouchDB version[0m
+couchdb 1.6.1
+[34m[1mNeo4j version[0m
+1.9.4
+[34m[1mCassandra version[0m
+2.0.9
+[34m[1mRabbitMQ Version[0m
+3.4.2
+[34m[1mElasticSearch version[0m
+1.4.0
+[34m[1mInstalled Sphinx versions[0m
+2.0.10
+2.1.9
+2.2.4
+[34m[1mDefault Sphinx version[0m
+2.1.9
+[34m[1mInstalled Firefox version[0m
+firefox 31.0esr
+[34m[1mPhantomJS version[0m
+1.9.8
+[34m[1mant -version[0m
+Apache Ant(TM) version 1.8.2 compiled on December 3 2011
+[34m[1mmvn -version[0m
+Apache Maven 3.2.3 (33f8c3e1027c3ddde99d3cdebad2656a31e8fdf4; 2014-08-11T20:58:10+00:00)
+Maven home: /usr/local/maven
+Java version: 1.7.0_72, vendor: Oracle Corporation
+Java home: /usr/lib/jvm/java-7-oracle/jre
+Default locale: en, platform encoding: UTF-8
+OS name: "linux", version: "2.6.32-042stab090.5", arch: "amd64", family: "unix"
+travis_fold:end:system_info[0K
+travis_fold:start:git.checkout[0Ktravis_time:start:00d5d929[0K$ git clone --depth=50 --branch=reverter git://github.com/letsencrypt/lets-encrypt-preview.git letsencrypt/lets-encrypt-preview
+Cloning into 'letsencrypt/lets-encrypt-preview'...
+remote: Counting objects: 1865, done.[K
+remote: Compressing objects:   0% (1/909)   [Kremote: Compressing objects:   1% (10/909)   [Kremote: Compressing objects:   2% (19/909)   [Kremote: Compressing objects:   3% (28/909)   [Kremote: Compressing objects:   4% (37/909)   [Kremote: Compressing objects:   5% (46/909)   [Kremote: Compressing objects:   6% (55/909)   [Kremote: Compressing objects:   7% (64/909)   [Kremote: Compressing objects:   8% (73/909)   [Kremote: Compressing objects:   9% (82/909)   [Kremote: Compressing objects:  10% (91/909)   [Kremote: Compressing objects:  11% (100/909)   [Kremote: Compressing objects:  12% (110/909)   [Kremote: Compressing objects:  13% (119/909)   [Kremote: Compressing objects:  14% (128/909)   [Kremote: Compressing objects:  15% (137/909)   [Kremote: Compressing objects:  16% (146/909)   [Kremote: Compressing objects:  17% (155/909)   [Kremote: Compressing objects:  18% (164/909)   [Kremote: Compressing objects:  19% (173/909)   [Kremote: Compressing objects:  20% (182/909)   [Kremote: Compressing objects:  21% (191/909)   [Kremote: Compressing objects:  22% (200/909)   [Kremote: Compressing objects:  23% (210/909)   [Kremote: Compressing objects:  24% (219/909)   [Kremote: Compressing objects:  25% (228/909)   [Kremote: Compressing objects:  26% (237/909)   [Kremote: Compressing objects:  27% (246/909)   [Kremote: Compressing objects:  28% (255/909)   [Kremote: Compressing objects:  29% (264/909)   [Kremote: Compressing objects:  30% (273/909)   [Kremote: Compressing objects:  31% (282/909)   [Kremote: Compressing objects:  32% (291/909)   [Kremote: Compressing objects:  33% (300/909)   [Kremote: Compressing objects:  34% (310/909)   [Kremote: Compressing objects:  35% (319/909)   [Kremote: Compressing objects:  36% (328/909)   [Kremote: Compressing objects:  37% (337/909)   [Kremote: Compressing objects:  38% (346/909)   [Kremote: Compressing objects:  39% (355/909)   [Kremote: Compressing objects:  40% (364/909)   [Kremote: Compressing objects:  41% (373/909)   [Kremote: Compressing objects:  42% (382/909)   [Kremote: Compressing objects:  43% (391/909)   [Kremote: Compressing objects:  44% (400/909)   [Kremote: Compressing objects:  45% (410/909)   [Kremote: Compressing objects:  46% (419/909)   [Kremote: Compressing objects:  47% (428/909)   [Kremote: Compressing objects:  48% (437/909)   [Kremote: Compressing objects:  49% (446/909)   [Kremote: Compressing objects:  50% (455/909)   [Kremote: Compressing objects:  51% (464/909)   [Kremote: Compressing objects:  52% (473/909)   [Kremote: Compressing objects:  53% (482/909)   [Kremote: Compressing objects:  54% (491/909)   [Kremote: Compressing objects:  55% (500/909)   [Kremote: Compressing objects:  56% (510/909)   [Kremote: Compressing objects:  57% (519/909)   [Kremote: Compressing objects:  58% (528/909)   [Kremote: Compressing objects:  59% (537/909)   [Kremote: Compressing objects:  60% (546/909)   [Kremote: Compressing objects:  61% (555/909)   [Kremote: Compressing objects:  62% (564/909)   [Kremote: Compressing objects:  63% (573/909)   [Kremote: Compressing objects:  64% (582/909)   [Kremote: Compressing objects:  65% (591/909)   [Kremote: Compressing objects:  66% (600/909)   [Kremote: Compressing objects:  67% (610/909)   [Kremote: Compressing objects:  68% (619/909)   [Kremote: Compressing objects:  69% (628/909)   [Kremote: Compressing objects:  70% (637/909)   [Kremote: Compressing objects:  71% (646/909)   [Kremote: Compressing objects:  72% (655/909)   [Kremote: Compressing objects:  73% (664/909)   [Kremote: Compressing objects:  74% (673/909)   [Kremote: Compressing objects:  75% (682/909)   [Kremote: Compressing objects:  76% (691/909)   [Kremote: Compressing objects:  77% (700/909)   [Kremote: Compressing objects:  78% (710/909)   [Kremote: Compressing objects:  79% (719/909)   [Kremote: Compressing objects:  80% (728/909)   [Kremote: Compressing objects:  81% (737/909)   [Kremote: Compressing objects:  82% (746/909)   [Kremote: Compressing objects:  83% (755/909)   [Kremote: Compressing objects:  84% (764/909)   [Kremote: Compressing objects:  85% (773/909)   [Kremote: Compressing objects:  86% (782/909)   [Kremote: Compressing objects:  87% (791/909)   [Kremote: Compressing objects:  88% (800/909)   [Kremote: Compressing objects:  89% (810/909)   [Kremote: Compressing objects:  90% (819/909)   [Kremote: Compressing objects:  91% (828/909)   [Kremote: Compressing objects:  92% (837/909)   [Kremote: Compressing objects:  93% (846/909)   [Kremote: Compressing objects:  94% (855/909)   [Kremote: Compressing objects:  95% (864/909)   [Kremote: Compressing objects:  96% (873/909)   [Kremote: Compressing objects:  97% (882/909)   [Kremote: Compressing objects:  98% (891/909)   [Kremote: Compressing objects:  99% (900/909)   [Kremote: Compressing objects: 100% (909/909)   [Kremote: Compressing objects: 100% (909/909), done.[K
+Receiving objects:   0% (1/1865)   Receiving objects:   1% (19/1865)   Receiving objects:   2% (38/1865)   Receiving objects:   3% (56/1865)   Receiving objects:   4% (75/1865)   Receiving objects:   5% (94/1865)   Receiving objects:   6% (112/1865)   Receiving objects:   7% (131/1865)   Receiving objects:   8% (150/1865)   Receiving objects:   9% (168/1865)   Receiving objects:  10% (187/1865)   Receiving objects:  11% (206/1865)   Receiving objects:  12% (224/1865)   Receiving objects:  13% (243/1865)   Receiving objects:  14% (262/1865)   Receiving objects:  15% (280/1865)   Receiving objects:  16% (299/1865)   Receiving objects:  17% (318/1865)   Receiving objects:  18% (336/1865)   Receiving objects:  19% (355/1865)   Receiving objects:  20% (373/1865)   Receiving objects:  21% (392/1865)   Receiving objects:  22% (411/1865)   Receiving objects:  23% (429/1865)   Receiving objects:  24% (448/1865)   Receiving objects:  25% (467/1865)   Receiving objects:  26% (485/1865)   Receiving objects:  27% (504/1865)   Receiving objects:  28% (523/1865)   Receiving objects:  29% (541/1865)   Receiving objects:  30% (560/1865)   Receiving objects:  31% (579/1865)   Receiving objects:  32% (597/1865)   Receiving objects:  33% (616/1865)   Receiving objects:  34% (635/1865)   Receiving objects:  35% (653/1865)   Receiving objects:  36% (672/1865)   Receiving objects:  37% (691/1865)   Receiving objects:  38% (709/1865)   Receiving objects:  39% (728/1865)   Receiving objects:  40% (746/1865)   Receiving objects:  41% (765/1865)   Receiving objects:  42% (784/1865)   Receiving objects:  43% (802/1865)   Receiving objects:  44% (821/1865)   Receiving objects:  45% (840/1865)   Receiving objects:  46% (858/1865)   Receiving objects:  47% (877/1865)   Receiving objects:  48% (896/1865)   Receiving objects:  49% (914/1865)   Receiving objects:  50% (933/1865)   Receiving objects:  51% (952/1865)   Receiving objects:  52% (970/1865)   Receiving objects:  53% (989/1865)   Receiving objects:  54% (1008/1865)   Receiving objects:  55% (1026/1865)   Receiving objects:  56% (1045/1865)   Receiving objects:  57% (1064/1865)   Receiving objects:  58% (1082/1865)   Receiving objects:  59% (1101/1865)   Receiving objects:  60% (1119/1865)   Receiving objects:  61% (1138/1865)   Receiving objects:  62% (1157/1865)   Receiving objects:  63% (1175/1865)   Receiving objects:  64% (1194/1865)   Receiving objects:  65% (1213/1865)   Receiving objects:  66% (1231/1865)   Receiving objects:  67% (1250/1865)   Receiving objects:  68% (1269/1865)   Receiving objects:  69% (1287/1865)   Receiving objects:  70% (1306/1865)   Receiving objects:  71% (1325/1865)   Receiving objects:  72% (1343/1865)   Receiving objects:  73% (1362/1865)   Receiving objects:  74% (1381/1865)   Receiving objects:  75% (1399/1865)   Receiving objects:  76% (1418/1865)   Receiving objects:  77% (1437/1865)   Receiving objects:  78% (1455/1865)   Receiving objects:  79% (1474/1865)   Receiving objects:  80% (1492/1865)   remote: Total 1865 (delta 1182), reused 1591 (delta 922)[K
+Receiving objects:  81% (1511/1865)   Receiving objects:  82% (1530/1865)   Receiving objects:  83% (1548/1865)   Receiving objects:  84% (1567/1865)   Receiving objects:  85% (1586/1865)   Receiving objects:  86% (1604/1865)   Receiving objects:  87% (1623/1865)   Receiving objects:  88% (1642/1865)   Receiving objects:  89% (1660/1865)   Receiving objects:  90% (1679/1865)   Receiving objects:  91% (1698/1865)   Receiving objects:  92% (1716/1865)   Receiving objects:  93% (1735/1865)   Receiving objects:  94% (1754/1865)   Receiving objects:  95% (1772/1865)   Receiving objects:  96% (1791/1865)   Receiving objects:  97% (1810/1865)   Receiving objects:  98% (1828/1865)   Receiving objects:  99% (1847/1865)   Receiving objects: 100% (1865/1865)   Receiving objects: 100% (1865/1865), 449.92 KiB | 0 bytes/s, done.
+Resolving deltas:   0% (0/1182)   Resolving deltas:   1% (12/1182)   Resolving deltas:   2% (27/1182)   Resolving deltas:   4% (49/1182)   Resolving deltas:   6% (71/1182)   Resolving deltas:  19% (228/1182)   Resolving deltas:  20% (245/1182)   Resolving deltas:  21% (253/1182)   Resolving deltas:  22% (265/1182)   Resolving deltas:  26% (312/1182)   Resolving deltas:  29% (346/1182)   Resolving deltas:  31% (368/1182)   Resolving deltas:  32% (379/1182)   Resolving deltas:  34% (402/1182)   Resolving deltas:  35% (424/1182)   Resolving deltas:  37% (438/1182)   Resolving deltas:  38% (452/1182)   Resolving deltas:  39% (469/1182)   Resolving deltas:  42% (507/1182)   Resolving deltas:  43% (511/1182)   Resolving deltas:  44% (523/1182)   Resolving deltas:  45% (536/1182)   Resolving deltas:  46% (551/1182)   Resolving deltas:  47% (559/1182)   Resolving deltas:  48% (568/1182)   Resolving deltas:  50% (597/1182)   Resolving deltas:  51% (607/1182)   Resolving deltas:  52% (620/1182)   Resolving deltas:  53% (633/1182)   Resolving deltas:  54% (641/1182)   Resolving deltas:  55% (657/1182)   Resolving deltas:  56% (664/1182)   Resolving deltas:  58% (691/1182)   Resolving deltas:  59% (698/1182)   Resolving deltas:  60% (710/1182)   Resolving deltas:  61% (724/1182)   Resolving deltas:  62% (733/1182)   Resolving deltas:  64% (758/1182)   Resolving deltas:  65% (771/1182)   Resolving deltas:  68% (805/1182)   Resolving deltas:  71% (845/1182)   Resolving deltas:  73% (867/1182)   Resolving deltas:  74% (884/1182)   Resolving deltas:  76% (907/1182)   Resolving deltas:  77% (921/1182)   Resolving deltas:  78% (930/1182)   Resolving deltas:  79% (934/1182)   Resolving deltas:  87% (1029/1182)   Resolving deltas:  88% (1048/1182)   Resolving deltas:  91% (1086/1182)   Resolving deltas:  92% (1090/1182)   Resolving deltas:  95% (1125/1182)   Resolving deltas:  97% (1155/1182)   Resolving deltas:  98% (1164/1182)   Resolving deltas: 100% (1182/1182)   Resolving deltas: 100% (1182/1182), done.
+Checking connectivity... done.
+travis_time:end:00d5d929:start=1422190542663944335,finish=1422190543051447721,duration=387503386[0K$ cd letsencrypt/lets-encrypt-preview
+$ git checkout -qf ffbccd1ff1c823f663c917331db4882577965e3c
+travis_fold:end:git.checkout[0K
+[33;1mSetting environment variables from .travis.yml[0m
+$ export TOXENV=lint
+
+travis_time:start:355d7b58[0K$ source ~/virtualenv/python2.7/bin/activate
+travis_time:end:355d7b58:start=1422190543079077176,finish=1422190543088094921,duration=9017745[0K$ python --version
+Python 2.7.9
+$ pip --version
+pip 1.5.6 from /home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages (python 2.7)
+travis_fold:start:before_install[0Ktravis_time:start:1bba28bd[0K$ travis_retry sudo apt-get install python python-setuptools python-virtualenv python-dev gcc swig dialog libaugeas0 libssl-dev
+  
+Reading package lists... 0%Reading package lists... 0%Reading package lists... 1%Reading package lists... 6%Reading package lists... 6%Reading package lists... 6%Reading package lists... 6%Reading package lists... 18%Reading package lists... 27%Reading package lists... 27%Reading package lists... 27%Reading package lists... 27%Reading package lists... 33%Reading package lists... 33%Reading package lists... 34%Reading package lists... 34%Reading package lists... 35%Reading package lists... 54%Reading package lists... 54%Reading package lists... 55%Reading package lists... 55%Reading package lists... 55%Reading package lists... 58%Reading package lists... 58%Reading package lists... 58%Reading package lists... 58%Reading package lists... 58%Reading package lists... 58%Reading package lists... 69%Reading package lists... 70%Reading package lists... 70%Reading package lists... 75%Reading package lists... 75%Reading package lists... 75%Reading package lists... 75%Reading package lists... 77%Reading package lists... 77%Reading package lists... 77%Reading package lists... 77%Reading package lists... 82%Reading package lists... 82%Reading package lists... 82%Reading package lists... 82%Reading package lists... 83%Reading package lists... 83%Reading package lists... 83%Reading package lists... 83%Reading package lists... 83%Reading package lists... 86%Reading package lists... 86%Reading package lists... 86%Reading package lists... 86%Reading package lists... 86%Reading package lists... 86%Reading package lists... 87%Reading package lists... 87%Reading package lists... 87%Reading package lists... 87%Reading package lists... 87%Reading package lists... 87%Reading package lists... 87%Reading package lists... 87%Reading package lists... 87%Reading package lists... 87%Reading package lists... 87%Reading package lists... 87%Reading package lists... 87%Reading package lists... 87%Reading package lists... 88%Reading package lists... 88%Reading package lists... 88%Reading package lists... 88%Reading package lists... 88%Reading package lists... 88%Reading package lists... 88%Reading package lists... 88%Reading package lists... 88%Reading package lists... 88%Reading package lists... 88%Reading package lists... 88%Reading package lists... 90%Reading package lists... 90%Reading package lists... 91%Reading package lists... 91%Reading package lists... 91%Reading package lists... 91%Reading package lists... 91%Reading package lists... 91%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 95%Reading package lists... 95%Reading package lists... 95%Reading package lists... 95%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 98%Reading package lists... 98%Reading package lists... 98%Reading package lists... 98%Reading package lists... 98%Reading package lists... 98%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... Done
+Building dependency tree... 0%Building dependency tree... 0%Building dependency tree... 0%Building dependency tree... 50%Building dependency tree... 50%Building dependency tree       
+Reading state information... 0%Reading state information... 0%Reading state information... Done
+gcc is already the newest version.
+gcc set to manually installed.
+libssl-dev is already the newest version.
+libssl-dev set to manually installed.
+python is already the newest version.
+python-dev is already the newest version.
+The following package was automatically installed and is no longer required:
+  libgeos-3.2.2
+Use 'apt-get autoremove' to remove them.
+The following extra packages will be installed:
+  augeas-lenses python-pip swig2.0
+Suggested packages:
+  augeas-doc augeas-tools swig-doc swig-examples swig2.0-examples swig2.0-doc
+The following NEW packages will be installed:
+  augeas-lenses dialog libaugeas0 python-pip python-setuptools
+  python-virtualenv swig swig2.0
+0 upgraded, 8 newly installed, 0 to remove and 101 not upgraded.
+Need to get 4,422 kB of archives.
+After this operation, 10.5 MB of additional disk space will be used.
+0% [Working]            Get:1 http://us.archive.ubuntu.com/ubuntu/ precise/main augeas-lenses all 0.10.0-0ubuntu4 [175 kB]
+            0% [1 augeas-lenses 14.0 kB/175 kB 8%]                                      4% [Working]            Get:2 http://us.archive.ubuntu.com/ubuntu/ precise/universe dialog amd64 1.1-20111020-1 [280 kB]
+            4% [2 dialog 12.3 kB/280 kB 4%]                               10% [Working]             Get:3 http://us.archive.ubuntu.com/ubuntu/ precise/main libaugeas0 amd64 0.10.0-0ubuntu4 [171 kB]
+             10% [3 libaugeas0 0 B/171 kB 0%]                                14% [Working]             Get:4 http://us.archive.ubuntu.com/ubuntu/ precise/main python-setuptools all 0.6.24-1ubuntu1 [441 kB]
+             14% [4 python-setuptools 0 B/441 kB 0%]                                       24% [Working]             Get:5 http://us.archive.ubuntu.com/ubuntu/ precise/universe python-pip all 1.0-1build1 [95.1 kB]
+             24% [5 python-pip 4,096 B/95.1 kB 4%]                                     26% [Working]             Get:6 http://us.archive.ubuntu.com/ubuntu/ precise/universe python-virtualenv all 1.7.1.2-1 [2,112 kB]
+             26% [6 python-virtualenv 0 B/2,112 kB 0%]                                         74% [Working]             Get:7 http://us.archive.ubuntu.com/ubuntu/ precise/main swig2.0 amd64 2.0.4+really2.0.4-4ubuntu2 [1,139 kB]
+             74% [7 swig2.0 817 B/1,139 kB 0%]                                 100% [Working]              Get:8 http://us.archive.ubuntu.com/ubuntu/ precise/main swig amd64 2.0.4+really2.0.4-4ubuntu2 [8,808 B]
+              100% [8 swig 8,808 B/8,808 B 100%]                                  100% [Working]              Fetched 4,422 kB in 0s (13.0 MB/s)
+Selecting previously unselected package augeas-lenses.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 76367 files and directories currently installed.)
+Unpacking augeas-lenses (from .../augeas-lenses_0.10.0-0ubuntu4_all.deb) ...
+Selecting previously unselected package dialog.
+Unpacking dialog (from .../dialog_1.1-20111020-1_amd64.deb) ...
+Selecting previously unselected package libaugeas0.
+Unpacking libaugeas0 (from .../libaugeas0_0.10.0-0ubuntu4_amd64.deb) ...
+Selecting previously unselected package python-setuptools.
+Unpacking python-setuptools (from .../python-setuptools_0.6.24-1ubuntu1_all.deb) ...
+Selecting previously unselected package python-pip.
+Unpacking python-pip (from .../python-pip_1.0-1build1_all.deb) ...
+Selecting previously unselected package python-virtualenv.
+Unpacking python-virtualenv (from .../python-virtualenv_1.7.1.2-1_all.deb) ...
+Selecting previously unselected package swig2.0.
+Unpacking swig2.0 (from .../swig2.0_2.0.4+really2.0.4-4ubuntu2_amd64.deb) ...
+Selecting previously unselected package swig.
+Unpacking swig (from .../swig_2.0.4+really2.0.4-4ubuntu2_amd64.deb) ...
+Processing triggers for man-db ...
+Setting up augeas-lenses (0.10.0-0ubuntu4) ...
+Setting up dialog (1.1-20111020-1) ...
+Setting up libaugeas0 (0.10.0-0ubuntu4) ...
+Setting up python-setuptools (0.6.24-1ubuntu1) ...
+Setting up python-pip (1.0-1build1) ...
+Setting up python-virtualenv (1.7.1.2-1) ...
+Setting up swig2.0 (2.0.4+really2.0.4-4ubuntu2) ...
+Setting up swig (2.0.4+really2.0.4-4ubuntu2) ...
+Processing triggers for libc-bin ...
+ldconfig deferred processing now taking place
+travis_time:end:1bba28bd:start=1422190543472022612,finish=1422190556458069331,duration=12986046719[0Ktravis_fold:end:before_install[0Ktravis_fold:start:install[0Ktravis_time:start:011fad00[0K$ travis_retry python setup.py dev
+running develop
+running egg_info
+creating letsencrypt.egg-info
+writing requirements to letsencrypt.egg-info/requires.txt
+writing letsencrypt.egg-info/PKG-INFO
+writing top-level names to letsencrypt.egg-info/top_level.txt
+writing dependency_links to letsencrypt.egg-info/dependency_links.txt
+writing entry points to letsencrypt.egg-info/entry_points.txt
+writing manifest file 'letsencrypt.egg-info/SOURCES.txt'
+reading manifest file 'letsencrypt.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+writing manifest file 'letsencrypt.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/letsencrypt.egg-link (link to .)
+Adding letsencrypt 0.1 to easy-install.pth file
+Installing letsencrypt script to /home/travis/virtualenv/python2.7.9/bin
+
+Installed /home/travis/build/letsencrypt/lets-encrypt-preview
+Processing dependencies for letsencrypt==0.1
+Searching for M2Crypto
+Reading https://pypi.python.org/simple/M2Crypto/
+Best match: M2Crypto 0.22.3
+Downloading https://pypi.python.org/packages/source/M/M2Crypto/M2Crypto-0.22.3.tar.gz#md5=573f21aaac7d5c9549798e72ffcefedd
+Processing M2Crypto-0.22.3.tar.gz
+Writing /tmp/easy_install-P_Te_D/M2Crypto-0.22.3/setup.cfg
+Running M2Crypto-0.22.3/setup.py -q bdist_egg --dist-dir /tmp/easy_install-P_Te_D/M2Crypto-0.22.3/egg-dist-tmp-7CfM_K
+SWIG/_bio.i:64: Warning 454: Setting a pointer/reference variable may leak memory.
+SWIG/_rand.i:21: Warning 454: Setting a pointer/reference variable may leak memory.
+SWIG/_evp.i:160: Warning 454: Setting a pointer/reference variable may leak memory.
+SWIG/_dh.i:36: Warning 454: Setting a pointer/reference variable may leak memory.
+SWIG/_rsa.i:43: Warning 454: Setting a pointer/reference variable may leak memory.
+SWIG/_dsa.i:31: Warning 454: Setting a pointer/reference variable may leak memory.
+SWIG/_ssl.i:212: Warning 454: Setting a pointer/reference variable may leak memory.
+SWIG/_x509.i:323: Warning 454: Setting a pointer/reference variable may leak memory.
+SWIG/_pkcs7.i:44: Warning 454: Setting a pointer/reference variable may leak memory.
+SWIG/_pkcs7.i:44: Warning 454: Setting a pointer/reference variable may leak memory.
+SWIG/_util.i:11: Warning 454: Setting a pointer/reference variable may leak memory.
+SWIG/_ec.i:111: Warning 454: Setting a pointer/reference variable may leak memory.
+SWIG/_engine.i:168: Warning 454: Setting a pointer/reference variable may leak memory.
+SWIG/_m2crypto_wrap.c:3540:6: warning: function declaration isn’t a prototype [-Wstrict-prototypes]
+SWIG/_m2crypto_wrap.c: In function ‘x509v3_lhash’:
+SWIG/_m2crypto_wrap.c:6354:5: warning: return from incompatible pointer type [enabled by default]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_new__STACK’:
+SWIG/_m2crypto_wrap.c:7562:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_sk_new_null’:
+SWIG/_m2crypto_wrap.c:7714:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_new_stack_st_OPENSSL_STRING’:
+SWIG/_m2crypto_wrap.c:8202:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_new_stack_st_OPENSSL_BLOCK’:
+SWIG/_m2crypto_wrap.c:8294:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_threading_init’:
+SWIG/_m2crypto_wrap.c:8333:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_threading_cleanup’:
+SWIG/_m2crypto_wrap.c:8344:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_lib_init’:
+SWIG/_m2crypto_wrap.c:8355:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_err_get_error’:
+SWIG/_m2crypto_wrap.c:8547:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_err_peek_error’:
+SWIG/_m2crypto_wrap.c:8559:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_bio_s_bio’:
+SWIG/_m2crypto_wrap.c:8637:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_bio_s_mem’:
+SWIG/_m2crypto_wrap.c:8649:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_bio_s_socket’:
+SWIG/_m2crypto_wrap.c:8661:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_bio_f_ssl’:
+SWIG/_m2crypto_wrap.c:8673:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_bio_f_buffer’:
+SWIG/_m2crypto_wrap.c:8685:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_bio_f_cipher’:
+SWIG/_m2crypto_wrap.c:8697:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_rand_cleanup’:
+SWIG/_m2crypto_wrap.c:9923:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_rand_screen’:
+SWIG/_m2crypto_wrap.c:10071:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_md5’:
+SWIG/_m2crypto_wrap.c:10126:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_sha1’:
+SWIG/_m2crypto_wrap.c:10138:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_ripemd160’:
+SWIG/_m2crypto_wrap.c:10150:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_sha224’:
+SWIG/_m2crypto_wrap.c:10162:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_sha256’:
+SWIG/_m2crypto_wrap.c:10174:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_sha384’:
+SWIG/_m2crypto_wrap.c:10186:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_sha512’:
+SWIG/_m2crypto_wrap.c:10198:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_des_ecb’:
+SWIG/_m2crypto_wrap.c:10254:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_des_ede_ecb’:
+SWIG/_m2crypto_wrap.c:10266:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_des_ede3_ecb’:
+SWIG/_m2crypto_wrap.c:10278:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_des_cbc’:
+SWIG/_m2crypto_wrap.c:10290:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_des_ede_cbc’:
+SWIG/_m2crypto_wrap.c:10302:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_des_ede3_cbc’:
+SWIG/_m2crypto_wrap.c:10314:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_des_cfb’:
+SWIG/_m2crypto_wrap.c:10326:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_des_ede_cfb’:
+SWIG/_m2crypto_wrap.c:10338:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_des_ede3_cfb’:
+SWIG/_m2crypto_wrap.c:10350:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_des_ofb’:
+SWIG/_m2crypto_wrap.c:10362:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_des_ede_ofb’:
+SWIG/_m2crypto_wrap.c:10374:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_des_ede3_ofb’:
+SWIG/_m2crypto_wrap.c:10386:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_bf_ecb’:
+SWIG/_m2crypto_wrap.c:10398:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_bf_cbc’:
+SWIG/_m2crypto_wrap.c:10410:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_bf_cfb’:
+SWIG/_m2crypto_wrap.c:10422:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_bf_ofb’:
+SWIG/_m2crypto_wrap.c:10434:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_cast5_ecb’:
+SWIG/_m2crypto_wrap.c:10446:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_cast5_cbc’:
+SWIG/_m2crypto_wrap.c:10458:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_cast5_cfb’:
+SWIG/_m2crypto_wrap.c:10470:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_cast5_ofb’:
+SWIG/_m2crypto_wrap.c:10482:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_rc4’:
+SWIG/_m2crypto_wrap.c:10494:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_rc2_40_cbc’:
+SWIG/_m2crypto_wrap.c:10506:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_aes_128_ecb’:
+SWIG/_m2crypto_wrap.c:10518:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_aes_128_cbc’:
+SWIG/_m2crypto_wrap.c:10530:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_aes_128_cfb’:
+SWIG/_m2crypto_wrap.c:10542:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_aes_128_ofb’:
+SWIG/_m2crypto_wrap.c:10554:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_aes_192_ecb’:
+SWIG/_m2crypto_wrap.c:10566:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_aes_192_cbc’:
+SWIG/_m2crypto_wrap.c:10578:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_aes_192_cfb’:
+SWIG/_m2crypto_wrap.c:10590:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_aes_192_ofb’:
+SWIG/_m2crypto_wrap.c:10602:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_aes_256_ecb’:
+SWIG/_m2crypto_wrap.c:10614:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_aes_256_cbc’:
+SWIG/_m2crypto_wrap.c:10626:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_aes_256_cfb’:
+SWIG/_m2crypto_wrap.c:10638:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_aes_256_ofb’:
+SWIG/_m2crypto_wrap.c:10650:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_pkey_new’:
+SWIG/_m2crypto_wrap.c:10701:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_md_ctx_new’:
+SWIG/_m2crypto_wrap.c:11101:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_hmac_ctx_new’:
+SWIG/_m2crypto_wrap.c:11203:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_cipher_ctx_new’:
+SWIG/_m2crypto_wrap.c:11391:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_aes_new’:
+SWIG/_m2crypto_wrap.c:12040:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_rc4_new’:
+SWIG/_m2crypto_wrap.c:12212:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_dh_new’:
+SWIG/_m2crypto_wrap.c:12348:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_rsa_new’:
+SWIG/_m2crypto_wrap.c:12920:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_dsa_new’:
+SWIG/_m2crypto_wrap.c:14076:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_sslv3_method’:
+SWIG/_m2crypto_wrap.c:15391:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_sslv23_method’:
+SWIG/_m2crypto_wrap.c:15403:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_tlsv1_method’:
+SWIG/_m2crypto_wrap.c:15415:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_x509_new’:
+SWIG/_m2crypto_wrap.c:18556:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_x509_crl_new’:
+SWIG/_m2crypto_wrap.c:18647:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_x509_name_new’:
+SWIG/_m2crypto_wrap.c:19483:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_x509_name_entry_new’:
+SWIG/_m2crypto_wrap.c:20108:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_x509_req_new’:
+SWIG/_m2crypto_wrap.c:20355:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_x509_store_new’:
+SWIG/_m2crypto_wrap.c:20754:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_sk_x509_new_null’:
+SWIG/_m2crypto_wrap.c:21760:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_x509v3_lhash’:
+SWIG/_m2crypto_wrap.c:22162:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_sk_x509_extension_new_null’:
+SWIG/_m2crypto_wrap.c:22296:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_asn1_object_new’:
+SWIG/_m2crypto_wrap.c:22541:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_asn1_bit_string_new’:
+SWIG/_m2crypto_wrap.c:22762:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_asn1_string_new’:
+SWIG/_m2crypto_wrap.c:22774:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_asn1_utctime_new’:
+SWIG/_m2crypto_wrap.c:22966:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_asn1_integer_new’:
+SWIG/_m2crypto_wrap.c:23160:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_pkcs7_new’:
+SWIG/_m2crypto_wrap.c:23336:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_ec_key_new’:
+SWIG/_m2crypto_wrap.c:24464:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_engine_load_builtin_engines’:
+SWIG/_m2crypto_wrap.c:25254:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_engine_load_dynamic’:
+SWIG/_m2crypto_wrap.c:25265:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_engine_load_openssl’:
+SWIG/_m2crypto_wrap.c:25276:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_engine_cleanup’:
+SWIG/_m2crypto_wrap.c:25287:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_engine_new’:
+SWIG/_m2crypto_wrap.c:25299:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_ui_openssl’:
+SWIG/_m2crypto_wrap.c:25548:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘_wrap_new__cbd_t’:
+SWIG/_m2crypto_wrap.c:25682:1: warning: label ‘fail’ defined but not used [-Wunused-label]
+SWIG/_m2crypto_wrap.c: In function ‘mpi_to_bn’:
+SWIG/_m2crypto_wrap.c:3572:5: warning: ‘vlen’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c: In function ‘bin_to_bn’:
+SWIG/_m2crypto_wrap.c:3598:5: warning: ‘vlen’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c: In function ‘bio_write’:
+SWIG/_m2crypto_wrap.c:3863:9: warning: ‘flen’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c: In function ‘rand_seed’:
+SWIG/_m2crypto_wrap.c:4081:14: warning: ‘len’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c: In function ‘rand_add’:
+SWIG/_m2crypto_wrap.c:4093:13: warning: ‘len’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c: In function ‘pkcs5_pbkdf2_hmac_sha1’:
+SWIG/_m2crypto_wrap.c:4210:27: warning: ‘saltlen’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c:4210:27: warning: ‘passlen’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c: In function ‘hmac_init’:
+SWIG/_m2crypto_wrap.c:4282:14: warning: ‘klen’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c: In function ‘hmac’:
+SWIG/_m2crypto_wrap.c:4330:9: warning: ‘klen’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c: In function ‘bytes_to_key’:
+SWIG/_m2crypto_wrap.c:4368:10: warning: ‘dlen’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c: In function ‘cipher_update’:
+SWIG/_m2crypto_wrap.c:4402:35: warning: ‘len’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c: In function ‘verify_final’:
+SWIG/_m2crypto_wrap.c:4491:27: warning: ‘len’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c: In function ‘rc4_set_key’:
+SWIG/_m2crypto_wrap.c:4721:16: warning: ‘vlen’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c: In function ‘dh_compute_key’:
+SWIG/_m2crypto_wrap.c:4814:8: warning: ‘pklen’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c: In function ‘dh_set_p’:
+SWIG/_m2crypto_wrap.c:4875:8: warning: ‘vlen’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c: In function ‘dh_set_g’:
+SWIG/_m2crypto_wrap.c:4894:8: warning: ‘vlen’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c: In function ‘rsa_set_e’:
+SWIG/_m2crypto_wrap.c:4992:8: warning: ‘vlen’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c: In function ‘rsa_set_n’:
+SWIG/_m2crypto_wrap.c:5011:8: warning: ‘vlen’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c: In function ‘rsa_set_e_bin’:
+SWIG/_m2crypto_wrap.c:5030:8: warning: ‘vlen’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c: In function ‘rsa_set_n_bin’:
+SWIG/_m2crypto_wrap.c:5049:8: warning: ‘vlen’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c: In function ‘rsa_private_encrypt’:
+SWIG/_m2crypto_wrap.c:5073:10: warning: ‘flen’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c: In function ‘rsa_public_decrypt’:
+SWIG/_m2crypto_wrap.c:5098:10: warning: ‘flen’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c: In function ‘rsa_public_encrypt’:
+SWIG/_m2crypto_wrap.c:5123:10: warning: ‘flen’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c: In function ‘rsa_private_decrypt’:
+SWIG/_m2crypto_wrap.c:5148:10: warning: ‘flen’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c: In function ‘dsa_set_p’:
+SWIG/_m2crypto_wrap.c:5405:8: warning: ‘vlen’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c: In function ‘dsa_set_q’:
+SWIG/_m2crypto_wrap.c:5424:8: warning: ‘vlen’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c: In function ‘dsa_set_g’:
+SWIG/_m2crypto_wrap.c:5443:8: warning: ‘vlen’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c: In function ‘dsa_sign’:
+SWIG/_m2crypto_wrap.c:5535:8: warning: ‘vlen’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c: In function ‘dsa_verify’:
+SWIG/_m2crypto_wrap.c:5570:29: warning: ‘slen’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c:5565:29: warning: ‘rlen’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c:5575:9: warning: ‘vlen’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c: In function ‘dsa_sign_asn1’:
+SWIG/_m2crypto_wrap.c:5596:18: warning: ‘vlen’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c: In function ‘dsa_verify_asn1’:
+SWIG/_m2crypto_wrap.c:5616:8: warning: ‘slen’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c:5616:8: warning: ‘vlen’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c: In function ‘ssl_ctx_set_session_id_context’:
+SWIG/_m2crypto_wrap.c:5755:42: warning: ‘len’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c: In function ‘ssl_set_session_id_context’:
+SWIG/_m2crypto_wrap.c:5824:38: warning: ‘len’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c: In function ‘ssl_write’:
+SWIG/_m2crypto_wrap.c:6027:7: warning: ‘len’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c: In function ‘ssl_write_nbio’:
+SWIG/_m2crypto_wrap.c:6072:7: warning: ‘len’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c: In function ‘ecdsa_sign’:
+SWIG/_m2crypto_wrap.c:6994:8: warning: ‘vlen’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c: In function ‘ecdsa_verify’:
+SWIG/_m2crypto_wrap.c:7029:19: warning: ‘slen’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c:7024:19: warning: ‘rlen’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c:7034:9: warning: ‘vlen’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c: In function ‘ecdsa_sign_asn1’:
+SWIG/_m2crypto_wrap.c:7056:20: warning: ‘vlen’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c: In function ‘ecdsa_verify_asn1’:
+SWIG/_m2crypto_wrap.c:7077:8: warning: ‘slen’ may be used uninitialized in this function [-Wuninitialized]
+SWIG/_m2crypto_wrap.c:7077:8: warning: ‘vlen’ may be used uninitialized in this function [-Wuninitialized]
+zip_safe flag not set; analyzing archive contents...
+Adding M2Crypto 0.22.3 to easy-install.pth file
+
+Installed /home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/M2Crypto-0.22.3-py2.7-linux-x86_64.egg
+Searching for zope.interface
+Reading https://pypi.python.org/simple/zope.interface/
+Best match: zope.interface 4.1.2
+Downloading https://pypi.python.org/packages/source/z/zope.interface/zope.interface-4.1.2.tar.gz#md5=04298faeaa70b4f3b23fa2ae8987262c
+Processing zope.interface-4.1.2.tar.gz
+Writing /tmp/easy_install-j4P0L3/zope.interface-4.1.2/setup.cfg
+Running zope.interface-4.1.2/setup.py -q bdist_egg --dist-dir /tmp/easy_install-j4P0L3/zope.interface-4.1.2/egg-dist-tmp-0pDzDq
+warning: no previously-included files matching '*.dll' found anywhere in distribution
+warning: no previously-included files matching '*.pyc' found anywhere in distribution
+warning: no previously-included files matching '*.pyo' found anywhere in distribution
+warning: no previously-included files matching '*.so' found anywhere in distribution
+Adding zope.interface 4.1.2 to easy-install.pth file
+
+Installed /home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/zope.interface-4.1.2-py2.7-linux-x86_64.egg
+Searching for zope.component
+Reading https://pypi.python.org/simple/zope.component/
+Best match: zope.component 4.2.1
+Downloading https://pypi.python.org/packages/source/z/zope.component/zope.component-4.2.1.tar.gz#md5=cf55d496428d976f9329a4a2330a8b54
+Processing zope.component-4.2.1.tar.gz
+Writing /tmp/easy_install-zqU_gi/zope.component-4.2.1/setup.cfg
+Running zope.component-4.2.1/setup.py -q bdist_egg --dist-dir /tmp/easy_install-zqU_gi/zope.component-4.2.1/egg-dist-tmp-U1aL7u
+warning: no previously-included files matching '*.dll' found anywhere in distribution
+warning: no previously-included files matching '*.pyc' found anywhere in distribution
+warning: no previously-included files matching '*.pyo' found anywhere in distribution
+warning: no previously-included files matching '*.so' found anywhere in distribution
+Adding zope.component 4.2.1 to easy-install.pth file
+
+Installed /home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/zope.component-4.2.1-py2.7.egg
+Searching for requests
+Reading https://pypi.python.org/simple/requests/
+Best match: requests 2.5.1
+Downloading https://pypi.python.org/packages/source/r/requests/requests-2.5.1.tar.gz#md5=c270eb5551a02e8ab7a4cbb83e22af2e
+Processing requests-2.5.1.tar.gz
+Writing /tmp/easy_install-BZNPsj/requests-2.5.1/setup.cfg
+Running requests-2.5.1/setup.py -q bdist_egg --dist-dir /tmp/easy_install-BZNPsj/requests-2.5.1/egg-dist-tmp-NQdGad
+Adding requests 2.5.1 to easy-install.pth file
+
+Installed /home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/requests-2.5.1-py2.7.egg
+Searching for python2-pythondialog
+Reading https://pypi.python.org/simple/python2-pythondialog/
+Best match: python2-pythondialog 3.0.1
+Downloading https://pypi.python.org/packages/source/p/python2-pythondialog/python2-pythondialog-3.0.1.tar.gz#md5=89d8cc7cee4ccfc418969feaff5e9192
+Processing python2-pythondialog-3.0.1.tar.gz
+Writing /tmp/easy_install-EtR7m0/python2-pythondialog-3.0.1/setup.cfg
+Running python2-pythondialog-3.0.1/setup.py -q bdist_egg --dist-dir /tmp/easy_install-EtR7m0/python2-pythondialog-3.0.1/egg-dist-tmp-3lp6Rd
+No .git directory, using the 'ChangeLog' file as is.
+zip_safe flag not set; analyzing archive contents...
+Adding python2-pythondialog 3.0.1 to easy-install.pth file
+
+Installed /home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/python2_pythondialog-3.0.1-py2.7.egg
+Searching for python-augeas
+Reading https://pypi.python.org/simple/python-augeas/
+Best match: python-augeas 0.5.0
+Downloading https://pypi.python.org/packages/source/p/python-augeas/python-augeas-0.5.0.tar.gz#md5=2d5a903467410b8d60abca5fa54bae2d
+Processing python-augeas-0.5.0.tar.gz
+Writing /tmp/easy_install-8rnAFP/python-augeas-0.5.0/setup.cfg
+Running python-augeas-0.5.0/setup.py -q bdist_egg --dist-dir /tmp/easy_install-8rnAFP/python-augeas-0.5.0/egg-dist-tmp-skwj_B
+zip_safe flag not set; analyzing archive contents...
+Adding python-augeas 0.5.0 to easy-install.pth file
+
+Installed /home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/python_augeas-0.5.0-py2.7.egg
+Searching for pycrypto
+Reading https://pypi.python.org/simple/pycrypto/
+Best match: pycrypto 2.6.1
+Downloading https://pypi.python.org/packages/source/p/pycrypto/pycrypto-2.6.1.tar.gz#md5=55a61a054aa66812daf5161a0d5d7eda
+Processing pycrypto-2.6.1.tar.gz
+Writing /tmp/easy_install-RdPHbL/pycrypto-2.6.1/setup.cfg
+Running pycrypto-2.6.1/setup.py -q bdist_egg --dist-dir /tmp/easy_install-RdPHbL/pycrypto-2.6.1/egg-dist-tmp-aWJxqG
+warning: GMP or MPIR library not found; Not building Crypto.PublicKey._fastmath.
+zip_safe flag not set; analyzing archive contents...
+Adding pycrypto 2.6.1 to easy-install.pth file
+
+Installed /home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/pycrypto-2.6.1-py2.7-linux-x86_64.egg
+Searching for jsonschema
+Reading https://pypi.python.org/simple/jsonschema/
+Best match: jsonschema 2.4.0
+Downloading https://pypi.python.org/packages/source/j/jsonschema/jsonschema-2.4.0.zip#md5=f645c88123189976058fcf550c02e50f
+Processing jsonschema-2.4.0.zip
+Writing /tmp/easy_install-k2_IxM/jsonschema-2.4.0/setup.cfg
+Running jsonschema-2.4.0/setup.py -q bdist_egg --dist-dir /tmp/easy_install-k2_IxM/jsonschema-2.4.0/egg-dist-tmp-OT3CUl
+zip_safe flag not set; analyzing archive contents...
+jsonschema.tests.test_jsonschema_test_suite: module references __file__
+Adding jsonschema 2.4.0 to easy-install.pth file
+Installing jsonschema script to /home/travis/virtualenv/python2.7.9/bin
+
+Installed /home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/jsonschema-2.4.0-py2.7.egg
+Searching for argparse
+Reading https://pypi.python.org/simple/argparse/
+Best match: argparse 1.3.0
+Downloading https://pypi.python.org/packages/source/a/argparse/argparse-1.3.0.tar.gz#md5=9bcf7f612190885c8c85e30ba41db3c7
+Processing argparse-1.3.0.tar.gz
+Writing /tmp/easy_install-qgD_Sd/argparse-1.3.0/setup.cfg
+Running argparse-1.3.0/setup.py -q bdist_egg --dist-dir /tmp/easy_install-qgD_Sd/argparse-1.3.0/egg-dist-tmp-FU17ma
+warning: no previously-included files matching '*.pyc' found anywhere in distribution
+warning: no previously-included files matching '*.pyo' found anywhere in distribution
+warning: no previously-included files matching '*.orig' found anywhere in distribution
+warning: no previously-included files matching '*.rej' found anywhere in distribution
+no previously-included directories found matching 'doc/_build'
+no previously-included directories found matching 'env24'
+no previously-included directories found matching 'env25'
+no previously-included directories found matching 'env26'
+no previously-included directories found matching 'env27'
+zip_safe flag not set; analyzing archive contents...
+Adding argparse 1.3.0 to easy-install.pth file
+
+Installed /home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/argparse-1.3.0-py2.7.egg
+Searching for zope.event
+Reading https://pypi.python.org/simple/zope.event/
+Best match: zope.event 4.0.3
+Downloading https://pypi.python.org/packages/source/z/zope.event/zope.event-4.0.3.tar.gz#md5=9a3780916332b18b8b85f522bcc3e249
+Processing zope.event-4.0.3.tar.gz
+Writing /tmp/easy_install-iPvx_p/zope.event-4.0.3/setup.cfg
+Running zope.event-4.0.3/setup.py -q bdist_egg --dist-dir /tmp/easy_install-iPvx_p/zope.event-4.0.3/egg-dist-tmp-5lVAsM
+warning: no previously-included files matching '*.dll' found anywhere in distribution
+warning: no previously-included files matching '*.pyc' found anywhere in distribution
+warning: no previously-included files matching '*.pyo' found anywhere in distribution
+warning: no previously-included files matching '*.so' found anywhere in distribution
+Adding zope.event 4.0.3 to easy-install.pth file
+
+Installed /home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/zope.event-4.0.3-py2.7.egg
+Searching for mock==1.0.1
+Best match: mock 1.0.1
+Adding mock 1.0.1 to easy-install.pth file
+
+Using /home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages
+Searching for setuptools==3.6
+Best match: setuptools 3.6
+Adding setuptools 3.6 to easy-install.pth file
+Installing easy_install-3.4 script to /home/travis/virtualenv/python2.7.9/bin
+Installing easy_install script to /home/travis/virtualenv/python2.7.9/bin
+
+Using /home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages
+Finished processing dependencies for letsencrypt==0.1
+running easy_install
+Searching for letsencrypt[testing]
+Best match: letsencrypt 0.1
+letsencrypt 0.1 is already the active version in easy-install.pth
+Installing letsencrypt script to /home/travis/virtualenv/python2.7.9/bin
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview
+Processing dependencies for letsencrypt[testing]
+Searching for tox
+Reading https://pypi.python.org/simple/tox/
+Best match: tox 1.8.1
+Downloading https://pypi.python.org/packages/source/t/tox/tox-1.8.1.tar.gz#md5=c4423cc6512932b37e5b0d1faa87bef2
+Processing tox-1.8.1.tar.gz
+Writing /tmp/easy_install-jMjK1L/tox-1.8.1/setup.cfg
+Running tox-1.8.1/setup.py -q bdist_egg --dist-dir /tmp/easy_install-jMjK1L/tox-1.8.1/egg-dist-tmp-e5ZQKt
+zip_safe flag not set; analyzing archive contents...
+tox.interpreters: module MAY be using inspect.getsource
+tox._cmdline: module references __file__
+tox._config: module references __file__
+tox._pytestplugin: module references __file__
+Adding tox 1.8.1 to easy-install.pth file
+Installing tox script to /home/travis/virtualenv/python2.7.9/bin
+Installing tox-quickstart script to /home/travis/virtualenv/python2.7.9/bin
+
+Installed /home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/tox-1.8.1-py2.7.egg
+Searching for astroid<1.3.0
+Reading https://pypi.python.org/simple/astroid/
+Best match: astroid 1.2.1
+Downloading https://pypi.python.org/packages/source/a/astroid/astroid-1.2.1.zip#md5=337017c82a28c97741797493fb2c980f
+Processing astroid-1.2.1.zip
+Writing /tmp/easy_install-neTyPx/astroid-1.2.1/setup.cfg
+Running astroid-1.2.1/setup.py -q bdist_egg --dist-dir /tmp/easy_install-neTyPx/astroid-1.2.1/egg-dist-tmp-p8vq_v
+package init file './test/__init__.py' not found (or not a regular file)
+package init file './test/__init__.py' not found (or not a regular file)
+package init file './test/__init__.py' not found (or not a regular file)
+zip_safe flag not set; analyzing archive contents...
+astroid.builder: module references __file__
+astroid.scoped_nodes: module references __file__
+astroid.scoped_nodes: module references __path__
+astroid.__init__: module references __file__
+astroid.raw_building: module references __file__
+astroid.raw_building: module references __path__
+astroid.manager: module references __file__
+astroid.modutils: module references __file__
+astroid.modutils: module references __path__
+astroid.test.unittest_regrtest: module references __file__
+astroid.test.unittest_nodes: module references __file__
+astroid.test.unittest_builder: module references __file__
+astroid.test.unittest_builder: module references __path__
+astroid.test.unittest_utils: module references __file__
+astroid.test.unittest_inference: module references __file__
+astroid.test.unittest_manager: module references __file__
+astroid.test.unittest_scoped_nodes: module references __file__
+astroid.test.unittest_scoped_nodes: module references __path__
+astroid.test.unittest_modutils: module references __file__
+astroid.test.unittest_modutils: module references __path__
+astroid.test.unittest_inspector: module references __file__
+astroid.test.unittest_lookup: module references __file__
+astroid.test.unittest_lookup: module references __path__
+Adding astroid 1.2.1 to easy-install.pth file
+
+Installed /home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/astroid-1.2.1-py2.7.egg
+Searching for pylint<1.4
+Reading https://pypi.python.org/simple/pylint/
+Best match: pylint 1.3.1
+Downloading https://pypi.python.org/packages/source/p/pylint/pylint-1.3.1.zip#md5=3fd88d02423e167cf130e9882075b2ac
+Processing pylint-1.3.1.zip
+Writing /tmp/easy_install-hDV2KP/pylint-1.3.1/setup.cfg
+Running pylint-1.3.1/setup.py -q bdist_egg --dist-dir /tmp/easy_install-hDV2KP/pylint-1.3.1/egg-dist-tmp-V92TAb
+warning: no files found matching '*.html' under directory 'doc'
+zip_safe flag not set; analyzing archive contents...
+pylint.epylint: module references __file__
+pylint.reporters.__init__: module references __path__
+pylint.checkers.__init__: module references __path__
+  File "/home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_abstract_class_instantiated_py34.py", line 12
+    class GoodClass(object, metaclass=abc.ABCMeta):
+                                     ^
+SyntaxError: invalid syntax
+
+  File "/home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_w0705.py", line 28
+    __revision__ += 1
+SyntaxError: default 'except:' must be last
+
+  File "/home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_exec_used_py30.py", line 6
+    exec('a = 1', globals={})
+                         ^
+SyntaxError: invalid syntax
+
+  File "/home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_undefined_metaclass_var_py30.py", line 8
+    class Bad(metaclass=ABCMet):
+                       ^
+SyntaxError: invalid syntax
+
+  File "/home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_yield_outside_func.py", line 3
+    yield 1
+SyntaxError: 'yield' outside function
+
+SyntaxError: 'return' with argument inside generator (func_return_yield_mix_py_33.py, line 8)
+
+  File "/home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_abstract_class_instantiated_py30.py", line 12
+    class GoodClass(object, metaclass=abc.ABCMeta):
+                                     ^
+SyntaxError: invalid syntax
+
+SyntaxError: duplicate argument '_' in function definition (func_e0108.py, line 4)
+
+  File "/home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_bad_exception_context_py30.py", line 14
+    raise IndexError from 1
+                        ^
+SyntaxError: invalid syntax
+
+  File "/home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_noerror_unbalanced_tuple_unpacking_py30.py", line 9
+    first, second, *last = (1, 2, 3, 4)
+                   ^
+SyntaxError: invalid syntax
+
+  File "/home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_unused_import_py30.py", line 9
+    class Meta(metaclass=abc.ABCMeta):
+                        ^
+SyntaxError: invalid syntax
+
+  File "/home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_keyword_repeat.py", line 8
+    function_default_arg(two=5, two=7)
+SyntaxError: keyword argument repeated
+
+  File "/home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_syntax_error.py", line 1
+    def toto
+           ^
+SyntaxError: invalid syntax
+
+/home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_assert_2uple.py:4: SyntaxWarning: assertion is always true, perhaps remove parentheses?
+  assert (1 == 1, 2 == 2), "no error"
+/home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_assert_2uple.py:5: SyntaxWarning: assertion is always true, perhaps remove parentheses?
+  assert (1 == 1, 2 == 2) #this should generate a warning
+/home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_assert_2uple.py:7: SyntaxWarning: assertion is always true, perhaps remove parentheses?
+  assert (1 == 1, ), "no error"
+/home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_assert_2uple.py:8: SyntaxWarning: assertion is always true, perhaps remove parentheses?
+  assert (1 == 1, )
+/home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_assert_2uple.py:9: SyntaxWarning: assertion is always true, perhaps remove parentheses?
+  assert (1 == 1, 2 == 2, 3 == 5), "no error"
+/home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_assert_2uple.py:11: SyntaxWarning: assertion is always true, perhaps remove parentheses?
+  assert (True, 'error msg') #this should generate a warning
+  File "/home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_kwoa_py30.py", line 3
+    def function(*, foo):
+                  ^
+SyntaxError: invalid syntax
+
+  File "/home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_return_outside_func.py", line 3
+    return
+SyntaxError: 'return' outside function
+
+  File "/home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_continue_not_in_loop.py", line 8
+    continue
+SyntaxError: 'continue' not properly in loop
+
+  File "/home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_3k_removed_stuff_py_30.py", line 4
+    from __future__ import generators
+SyntaxError: from __future__ imports must occur at the beginning of the file
+
+Sorry: IndentationError: expected an indented block (syntax_error.py, line 2)
+  File "/home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_used_before_assignment_py30.py", line 10
+    nonlocal cnt
+               ^
+SyntaxError: invalid syntax
+
+  File "/home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_noerror_unused_variable_py30.py", line 12
+    nonlocal attr
+                ^
+SyntaxError: invalid syntax
+
+  File "/home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_unknown_encoding.py", line 0
+SyntaxError: unknown encoding: IBO-8859-1
+
+Adding pylint 1.3.1 to easy-install.pth file
+Installing symilar script to /home/travis/virtualenv/python2.7.9/bin
+Installing epylint script to /home/travis/virtualenv/python2.7.9/bin
+Installing pyreverse script to /home/travis/virtualenv/python2.7.9/bin
+Installing pylint script to /home/travis/virtualenv/python2.7.9/bin
+Installing pylint-gui script to /home/travis/virtualenv/python2.7.9/bin
+Installing pyreverse script to /home/travis/virtualenv/python2.7.9/bin
+Installing pylint script to /home/travis/virtualenv/python2.7.9/bin
+Installing epylint script to /home/travis/virtualenv/python2.7.9/bin
+Installing pylint-gui script to /home/travis/virtualenv/python2.7.9/bin
+Installing symilar script to /home/travis/virtualenv/python2.7.9/bin
+
+Installed /home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg
+Searching for nosexcover
+Reading https://pypi.python.org/simple/nosexcover/
+Best match: nosexcover 1.0.10
+Downloading https://pypi.python.org/packages/source/n/nosexcover/nosexcover-1.0.10.tar.gz#md5=12bf494a801b376debeb6a167c247391
+Processing nosexcover-1.0.10.tar.gz
+Writing /tmp/easy_install-LrrBBg/nosexcover-1.0.10/setup.cfg
+Running nosexcover-1.0.10/setup.py -q bdist_egg --dist-dir /tmp/easy_install-LrrBBg/nosexcover-1.0.10/egg-dist-tmp-iX2wRH
+Adding nosexcover 1.0.10 to easy-install.pth file
+
+Installed /home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/nosexcover-1.0.10-py2.7.egg
+Searching for coverage
+Reading https://pypi.python.org/simple/coverage/
+Best match: coverage 4.0a3
+Downloading https://pypi.python.org/packages/source/c/coverage/coverage-4.0a3.tar.gz#md5=274681bb92b9630d1734f7fb7a56f8f5
+Processing coverage-4.0a3.tar.gz
+Writing /tmp/easy_install-XZj_w3/coverage-4.0a3/setup.cfg
+Running coverage-4.0a3/setup.py -q bdist_egg --dist-dir /tmp/easy_install-XZj_w3/coverage-4.0a3/egg-dist-tmp-GYO7Gq
+warning: no previously-included files matching '*.pyc' found anywhere in distribution
+Adding coverage 4.0a3 to easy-install.pth file
+Installing coverage2 script to /home/travis/virtualenv/python2.7.9/bin
+Installing coverage-2.7 script to /home/travis/virtualenv/python2.7.9/bin
+Installing coverage script to /home/travis/virtualenv/python2.7.9/bin
+
+Installed /home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/coverage-4.0a3-py2.7-linux-x86_64.egg
+Searching for virtualenv>=1.11.2
+Reading https://pypi.python.org/simple/virtualenv/
+Best match: virtualenv 12.0.5
+Downloading https://pypi.python.org/packages/source/v/virtualenv/virtualenv-12.0.5.tar.gz#md5=637abbbd04d270ee8c601ab29c4f7561
+Processing virtualenv-12.0.5.tar.gz
+Writing /tmp/easy_install-jGowpX/virtualenv-12.0.5/setup.cfg
+Running virtualenv-12.0.5/setup.py -q bdist_egg --dist-dir /tmp/easy_install-jGowpX/virtualenv-12.0.5/egg-dist-tmp-dCv20f
+warning: no previously-included files matching '*' found under directory 'docs/_templates'
+warning: no previously-included files matching '*' found under directory 'docs/_build'
+Adding virtualenv 12.0.5 to easy-install.pth file
+Installing virtualenv script to /home/travis/virtualenv/python2.7.9/bin
+Installing virtualenv-2.7 script to /home/travis/virtualenv/python2.7.9/bin
+
+Installed /home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/virtualenv-12.0.5-py2.7.egg
+Searching for logilab-common>=0.60.0
+Reading https://pypi.python.org/simple/logilab-common/
+Best match: logilab-common 0.63.2
+Downloading https://pypi.python.org/packages/source/l/logilab-common/logilab-common-0.63.2.tar.gz#md5=2bf4599ae1f2ccf4603ca02c5d7e798e
+Processing logilab-common-0.63.2.tar.gz
+Writing /tmp/easy_install-umIcqw/logilab-common-0.63.2/setup.cfg
+Running logilab-common-0.63.2/setup.py -q bdist_egg --dist-dir /tmp/easy_install-umIcqw/logilab-common-0.63.2/egg-dist-tmp-kMJ44h
+/opt/python/2.7.9/lib/python2.7/distutils/dist.py:267: UserWarning: Unknown distribution option: 'test_require'
+  warnings.warn(msg)
+package init file './test/__init__.py' not found (or not a regular file)
+package init file './test/__init__.py' not found (or not a regular file)
+package init file './test/__init__.py' not found (or not a regular file)
+zip_safe flag not set; analyzing archive contents...
+logilab.common.testlib: module references __file__
+logilab.common.testlib: module MAY be using inspect.getinnerframes
+logilab.common.pytest: module references __file__
+logilab.common.debugger: module MAY be using inspect.getsource
+logilab.common.modutils: module references __file__
+logilab.common.modutils: module references __path__
+logilab.common.registry: module references __file__
+logilab.common.test.unittest_fileutils: module references __file__
+logilab.common.test.unittest_testlib: module references __file__
+logilab.common.test.unittest_umessage: module references __file__
+logilab.common.test.unittest_configuration: module references __file__
+logilab.common.test.unittest_changelog: module references __file__
+logilab.common.test.unittest_modutils: module references __file__
+logilab.common.test.unittest_modutils: module references __path__
+logilab.common.test.unittest_shellutils: module references __file__
+Adding logilab-common 0.63.2 to easy-install.pth file
+Installing pytest script to /home/travis/virtualenv/python2.7.9/bin
+
+Installed /home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/logilab_common-0.63.2-py2.7.egg
+Searching for six>=1.4.0
+Reading https://pypi.python.org/simple/six/
+Best match: six 1.9.0
+Downloading https://pypi.python.org/packages/source/s/six/six-1.9.0.tar.gz#md5=476881ef4012262dfc8adc645ee786c4
+Processing six-1.9.0.tar.gz
+Writing /tmp/easy_install-HtJrOi/six-1.9.0/setup.cfg
+Running six-1.9.0/setup.py -q bdist_egg --dist-dir /tmp/easy_install-HtJrOi/six-1.9.0/egg-dist-tmp-0KlP3U
+no previously-included directories found matching 'documentation/_build'
+zip_safe flag not set; analyzing archive contents...
+six: module references __path__
+Adding six 1.9.0 to easy-install.pth file
+
+Installed /home/travis/virtualenv/python2.7.9/lib/python2.7/site-packages/six-1.9.0-py2.7.egg
+Finished processing dependencies for letsencrypt[testing]
+travis_time:end:011fad00:start=1422190556468972140,finish=1422190600921362084,duration=44452389944[0Ktravis_fold:end:install[0Ktravis_time:start:13156c54[0K$ travis_retry tox
+[1mGLOB sdist-make: /home/travis/build/letsencrypt/lets-encrypt-preview/setup.py[0m
+[1mlint create: /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint[0m
+[1mlint inst: /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/dist/letsencrypt-0.1.zip[0m
+[1mlint runtests: PYTHONHASHSEED='1239747821'[0m
+[1mlint runtests: commands[0] | python setup.py dev[0m
+running develop
+running egg_info
+writing letsencrypt.egg-info/PKG-INFO
+writing dependency_links to letsencrypt.egg-info/dependency_links.txt
+writing entry points to letsencrypt.egg-info/entry_points.txt
+writing top-level names to letsencrypt.egg-info/top_level.txt
+writing requirements to letsencrypt.egg-info/requires.txt
+reading manifest file 'letsencrypt.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+writing manifest file 'letsencrypt.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/letsencrypt.egg-link (link to .)
+Adding letsencrypt 0.1 to easy-install.pth file
+Installing letsencrypt script to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin
+
+Installed /home/travis/build/letsencrypt/lets-encrypt-preview
+Processing dependencies for letsencrypt==0.1
+Searching for M2Crypto==0.22.3
+Best match: M2Crypto 0.22.3
+Adding M2Crypto 0.22.3 to easy-install.pth file
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Searching for zope.interface==4.1.2
+Best match: zope.interface 4.1.2
+Adding zope.interface 4.1.2 to easy-install.pth file
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Searching for zope.component==4.2.1
+Best match: zope.component 4.2.1
+Adding zope.component 4.2.1 to easy-install.pth file
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Searching for requests==2.5.1
+Best match: requests 2.5.1
+Adding requests 2.5.1 to easy-install.pth file
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Searching for python2-pythondialog==3.0.1
+Best match: python2-pythondialog 3.0.1
+Adding python2-pythondialog 3.0.1 to easy-install.pth file
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Searching for python-augeas==0.5.0
+Best match: python-augeas 0.5.0
+Adding python-augeas 0.5.0 to easy-install.pth file
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Searching for pycrypto==2.6.1
+Best match: pycrypto 2.6.1
+Adding pycrypto 2.6.1 to easy-install.pth file
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Searching for mock==1.0.1
+Best match: mock 1.0.1
+Adding mock 1.0.1 to easy-install.pth file
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Searching for jsonschema==2.4.0
+Best match: jsonschema 2.4.0
+Adding jsonschema 2.4.0 to easy-install.pth file
+Installing jsonschema script to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Searching for argparse==1.3.0
+Best match: argparse 1.3.0
+Adding argparse 1.3.0 to easy-install.pth file
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Searching for setuptools==11.0
+Best match: setuptools 11.0
+Adding setuptools 11.0 to easy-install.pth file
+Installing easy_install script to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin
+Installing easy_install-3.4 script to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Searching for zope.event==4.0.3
+Best match: zope.event 4.0.3
+Adding zope.event 4.0.3 to easy-install.pth file
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Finished processing dependencies for letsencrypt==0.1
+running easy_install
+Searching for letsencrypt[testing]
+Best match: letsencrypt 0.1
+Removing letsencrypt 0.1 from easy-install.pth file
+Adding letsencrypt 0.1 to easy-install.pth file
+Installing letsencrypt script to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Processing dependencies for letsencrypt[testing]
+Searching for tox
+Reading https://pypi.python.org/simple/tox/
+Best match: tox 1.8.1
+Downloading https://pypi.python.org/packages/source/t/tox/tox-1.8.1.tar.gz#md5=c4423cc6512932b37e5b0d1faa87bef2
+Processing tox-1.8.1.tar.gz
+Writing /tmp/easy_install-BxTsWp/tox-1.8.1/setup.cfg
+Running tox-1.8.1/setup.py -q bdist_egg --dist-dir /tmp/easy_install-BxTsWp/tox-1.8.1/egg-dist-tmp-TJYJdB
+zip_safe flag not set; analyzing archive contents...
+tox.interpreters: module MAY be using inspect.getsource
+tox._cmdline: module references __file__
+tox._config: module references __file__
+tox._pytestplugin: module references __file__
+creating /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/tox-1.8.1-py2.7.egg
+Extracting tox-1.8.1-py2.7.egg to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Adding tox 1.8.1 to easy-install.pth file
+Installing tox-quickstart script to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin
+Installing tox script to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin
+
+Installed /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/tox-1.8.1-py2.7.egg
+Searching for astroid<1.3.0
+Reading https://pypi.python.org/simple/astroid/
+Best match: astroid 1.2.1
+Downloading https://pypi.python.org/packages/source/a/astroid/astroid-1.2.1.zip#md5=337017c82a28c97741797493fb2c980f
+Processing astroid-1.2.1.zip
+Writing /tmp/easy_install-Y9i9by/astroid-1.2.1/setup.cfg
+Running astroid-1.2.1/setup.py -q bdist_egg --dist-dir /tmp/easy_install-Y9i9by/astroid-1.2.1/egg-dist-tmp-I8cmTk
+package init file './test/__init__.py' not found (or not a regular file)
+package init file './test/__init__.py' not found (or not a regular file)
+package init file './test/__init__.py' not found (or not a regular file)
+zip_safe flag not set; analyzing archive contents...
+astroid.builder: module references __file__
+astroid.scoped_nodes: module references __file__
+astroid.scoped_nodes: module references __path__
+astroid.__init__: module references __file__
+astroid.raw_building: module references __file__
+astroid.raw_building: module references __path__
+astroid.manager: module references __file__
+astroid.modutils: module references __file__
+astroid.modutils: module references __path__
+astroid.test.unittest_regrtest: module references __file__
+astroid.test.unittest_nodes: module references __file__
+astroid.test.unittest_builder: module references __file__
+astroid.test.unittest_builder: module references __path__
+astroid.test.unittest_utils: module references __file__
+astroid.test.unittest_inference: module references __file__
+astroid.test.unittest_manager: module references __file__
+astroid.test.unittest_scoped_nodes: module references __file__
+astroid.test.unittest_scoped_nodes: module references __path__
+astroid.test.unittest_modutils: module references __file__
+astroid.test.unittest_modutils: module references __path__
+astroid.test.unittest_inspector: module references __file__
+astroid.test.unittest_lookup: module references __file__
+astroid.test.unittest_lookup: module references __path__
+creating /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/astroid-1.2.1-py2.7.egg
+Extracting astroid-1.2.1-py2.7.egg to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Adding astroid 1.2.1 to easy-install.pth file
+
+Installed /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/astroid-1.2.1-py2.7.egg
+Searching for pylint<1.4
+Reading https://pypi.python.org/simple/pylint/
+Best match: pylint 1.3.1
+Downloading https://pypi.python.org/packages/source/p/pylint/pylint-1.3.1.zip#md5=3fd88d02423e167cf130e9882075b2ac
+Processing pylint-1.3.1.zip
+Writing /tmp/easy_install-I5Vqxt/pylint-1.3.1/setup.cfg
+Running pylint-1.3.1/setup.py -q bdist_egg --dist-dir /tmp/easy_install-I5Vqxt/pylint-1.3.1/egg-dist-tmp-_X7I15
+warning: no files found matching '*.html' under directory 'doc'
+zip_safe flag not set; analyzing archive contents...
+pylint.epylint: module references __file__
+pylint.reporters.__init__: module references __path__
+pylint.checkers.__init__: module references __path__
+creating /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg
+Extracting pylint-1.3.1-py2.7.egg to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+  File "/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_abstract_class_instantiated_py34.py", line 12
+    class GoodClass(object, metaclass=abc.ABCMeta):
+                                     ^
+SyntaxError: invalid syntax
+
+  File "/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_w0705.py", line 28
+    __revision__ += 1
+SyntaxError: default 'except:' must be last
+
+  File "/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_exec_used_py30.py", line 6
+    exec('a = 1', globals={})
+                         ^
+SyntaxError: invalid syntax
+
+  File "/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_undefined_metaclass_var_py30.py", line 8
+    class Bad(metaclass=ABCMet):
+                       ^
+SyntaxError: invalid syntax
+
+  File "/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_yield_outside_func.py", line 3
+    yield 1
+SyntaxError: 'yield' outside function
+
+SyntaxError: 'return' with argument inside generator (func_return_yield_mix_py_33.py, line 8)
+
+  File "/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_abstract_class_instantiated_py30.py", line 12
+    class GoodClass(object, metaclass=abc.ABCMeta):
+                                     ^
+SyntaxError: invalid syntax
+
+SyntaxError: duplicate argument '_' in function definition (func_e0108.py, line 4)
+
+  File "/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_bad_exception_context_py30.py", line 14
+    raise IndexError from 1
+                        ^
+SyntaxError: invalid syntax
+
+  File "/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_noerror_unbalanced_tuple_unpacking_py30.py", line 9
+    first, second, *last = (1, 2, 3, 4)
+                   ^
+SyntaxError: invalid syntax
+
+  File "/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_unused_import_py30.py", line 9
+    class Meta(metaclass=abc.ABCMeta):
+                        ^
+SyntaxError: invalid syntax
+
+  File "/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_keyword_repeat.py", line 8
+    function_default_arg(two=5, two=7)
+SyntaxError: keyword argument repeated
+
+  File "/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_syntax_error.py", line 1
+    def toto
+           ^
+SyntaxError: invalid syntax
+
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_assert_2uple.py:4: SyntaxWarning: assertion is always true, perhaps remove parentheses?
+  assert (1 == 1, 2 == 2), "no error"
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_assert_2uple.py:5: SyntaxWarning: assertion is always true, perhaps remove parentheses?
+  assert (1 == 1, 2 == 2) #this should generate a warning
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_assert_2uple.py:7: SyntaxWarning: assertion is always true, perhaps remove parentheses?
+  assert (1 == 1, ), "no error"
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_assert_2uple.py:8: SyntaxWarning: assertion is always true, perhaps remove parentheses?
+  assert (1 == 1, )
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_assert_2uple.py:9: SyntaxWarning: assertion is always true, perhaps remove parentheses?
+  assert (1 == 1, 2 == 2, 3 == 5), "no error"
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_assert_2uple.py:11: SyntaxWarning: assertion is always true, perhaps remove parentheses?
+  assert (True, 'error msg') #this should generate a warning
+  File "/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_kwoa_py30.py", line 3
+    def function(*, foo):
+                  ^
+SyntaxError: invalid syntax
+
+  File "/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_return_outside_func.py", line 3
+    return
+SyntaxError: 'return' outside function
+
+  File "/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_continue_not_in_loop.py", line 8
+    continue
+SyntaxError: 'continue' not properly in loop
+
+  File "/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_3k_removed_stuff_py_30.py", line 4
+    from __future__ import generators
+SyntaxError: from __future__ imports must occur at the beginning of the file
+
+Sorry: IndentationError: expected an indented block (syntax_error.py, line 2)
+  File "/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_used_before_assignment_py30.py", line 10
+    nonlocal cnt
+               ^
+SyntaxError: invalid syntax
+
+  File "/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_noerror_unused_variable_py30.py", line 12
+    nonlocal attr
+                ^
+SyntaxError: invalid syntax
+
+  File "/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg/pylint/test/input/func_unknown_encoding.py", line 0
+SyntaxError: unknown encoding: IBO-8859-1
+
+Adding pylint 1.3.1 to easy-install.pth file
+Installing symilar script to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin
+Installing epylint script to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin
+Installing pyreverse script to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin
+Installing pylint script to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin
+Installing pylint-gui script to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin
+Installing epylint script to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin
+Installing pylint-gui script to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin
+Installing pylint script to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin
+Installing symilar script to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin
+Installing pyreverse script to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin
+
+Installed /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pylint-1.3.1-py2.7.egg
+Searching for nosexcover
+Reading https://pypi.python.org/simple/nosexcover/
+Best match: nosexcover 1.0.10
+Downloading https://pypi.python.org/packages/source/n/nosexcover/nosexcover-1.0.10.tar.gz#md5=12bf494a801b376debeb6a167c247391
+Processing nosexcover-1.0.10.tar.gz
+Writing /tmp/easy_install-wGxibH/nosexcover-1.0.10/setup.cfg
+Running nosexcover-1.0.10/setup.py -q bdist_egg --dist-dir /tmp/easy_install-wGxibH/nosexcover-1.0.10/egg-dist-tmp-NKRY4O
+creating /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/nosexcover-1.0.10-py2.7.egg
+Extracting nosexcover-1.0.10-py2.7.egg to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Adding nosexcover 1.0.10 to easy-install.pth file
+
+Installed /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/nosexcover-1.0.10-py2.7.egg
+Searching for nose
+Reading https://pypi.python.org/simple/nose/
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'nose (dev)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+Best match: nose 1.3.4
+Downloading https://pypi.python.org/packages/source/n/nose/nose-1.3.4.tar.gz#md5=6ed7169887580ddc9a8e16048d38274d
+Processing nose-1.3.4.tar.gz
+Writing /tmp/easy_install-7KGDLu/nose-1.3.4/setup.cfg
+Running nose-1.3.4/setup.py -q bdist_egg --dist-dir /tmp/easy_install-7KGDLu/nose-1.3.4/egg-dist-tmp-fihQRc
+no previously-included directories found matching 'doc/.build'
+creating /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/nose-1.3.4-py2.7.egg
+Extracting nose-1.3.4-py2.7.egg to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Adding nose 1.3.4 to easy-install.pth file
+Installing nosetests script to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin
+Installing nosetests-2.7 script to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin
+
+Installed /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/nose-1.3.4-py2.7.egg
+Searching for coverage
+Reading https://pypi.python.org/simple/coverage/
+Best match: coverage 4.0a3
+Downloading https://pypi.python.org/packages/source/c/coverage/coverage-4.0a3.tar.gz#md5=274681bb92b9630d1734f7fb7a56f8f5
+Processing coverage-4.0a3.tar.gz
+Writing /tmp/easy_install-zFAale/coverage-4.0a3/setup.cfg
+Running coverage-4.0a3/setup.py -q bdist_egg --dist-dir /tmp/easy_install-zFAale/coverage-4.0a3/egg-dist-tmp-XL3XdD
+warning: no previously-included files matching '*.pyc' found anywhere in distribution
+creating /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/coverage-4.0a3-py2.7-linux-x86_64.egg
+Extracting coverage-4.0a3-py2.7-linux-x86_64.egg to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Adding coverage 4.0a3 to easy-install.pth file
+Installing coverage-2.7 script to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin
+Installing coverage script to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin
+Installing coverage2 script to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin
+
+Installed /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/coverage-4.0a3-py2.7-linux-x86_64.egg
+Searching for py>=1.4.17
+Reading https://pypi.python.org/simple/py/
+Best match: py 1.4.26
+Downloading https://pypi.python.org/packages/source/p/py/py-1.4.26.tar.gz#md5=30c3fd92a53f1a5ed6f3591c1fe75c0e
+Processing py-1.4.26.tar.gz
+Writing /tmp/easy_install-zv1hII/py-1.4.26/setup.cfg
+Running py-1.4.26/setup.py -q bdist_egg --dist-dir /tmp/easy_install-zv1hII/py-1.4.26/egg-dist-tmp-X4yyCU
+creating /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/py-1.4.26-py2.7.egg
+Extracting py-1.4.26-py2.7.egg to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Adding py 1.4.26 to easy-install.pth file
+
+Installed /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/py-1.4.26-py2.7.egg
+Searching for virtualenv>=1.11.2
+Reading https://pypi.python.org/simple/virtualenv/
+Best match: virtualenv 12.0.5
+Downloading https://pypi.python.org/packages/source/v/virtualenv/virtualenv-12.0.5.tar.gz#md5=637abbbd04d270ee8c601ab29c4f7561
+Processing virtualenv-12.0.5.tar.gz
+Writing /tmp/easy_install-mCbBBW/virtualenv-12.0.5/setup.cfg
+Running virtualenv-12.0.5/setup.py -q bdist_egg --dist-dir /tmp/easy_install-mCbBBW/virtualenv-12.0.5/egg-dist-tmp-32kpXQ
+warning: no previously-included files matching '*' found under directory 'docs/_templates'
+warning: no previously-included files matching '*' found under directory 'docs/_build'
+creating /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/virtualenv-12.0.5-py2.7.egg
+Extracting virtualenv-12.0.5-py2.7.egg to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Adding virtualenv 12.0.5 to easy-install.pth file
+Installing virtualenv script to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin
+Installing virtualenv-2.7 script to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin
+
+Installed /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/virtualenv-12.0.5-py2.7.egg
+Searching for logilab-common>=0.60.0
+Reading https://pypi.python.org/simple/logilab-common/
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.38.1)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.39.0)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.43.0)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.44.0)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.46.0)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.46.1)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.47.0)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.48.1)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.49.0)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.50.0)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.50.1)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.50.2)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.50.3)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.51.0)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.51.1)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.52.0)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.52.1)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.53.0)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.54.0)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.55.0)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.55.2)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.56.0)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.56.1)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.56.2)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.57.0)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.57.1)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.58.1)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.58.3)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.59.0)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.59.1)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.60.0)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.60.1)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.61.0)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.62.0)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.62.1)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.63.0)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.63.1)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/pkg_resources/__init__.py:2462: PEP440Warning: 'logilab (common-0.63.2)' is being parsed as a legacy, non PEP 440, version. You may find odd behavior and sort order. In particular it will be sorted as less than 0.0. It is recommend to migrate to PEP 440 compatible versions.
+  PEP440Warning,
+Best match: logilab-common 0.63.2
+Downloading https://pypi.python.org/packages/source/l/logilab-common/logilab-common-0.63.2.tar.gz#md5=2bf4599ae1f2ccf4603ca02c5d7e798e
+Processing logilab-common-0.63.2.tar.gz
+Writing /tmp/easy_install-oALUHz/logilab-common-0.63.2/setup.cfg
+Running logilab-common-0.63.2/setup.py -q bdist_egg --dist-dir /tmp/easy_install-oALUHz/logilab-common-0.63.2/egg-dist-tmp-nP7DXW
+/opt/python/2.7.9/lib/python2.7/distutils/dist.py:267: UserWarning: Unknown distribution option: 'test_require'
+  warnings.warn(msg)
+package init file './test/__init__.py' not found (or not a regular file)
+package init file './test/__init__.py' not found (or not a regular file)
+package init file './test/__init__.py' not found (or not a regular file)
+zip_safe flag not set; analyzing archive contents...
+logilab.common.testlib: module references __file__
+logilab.common.testlib: module MAY be using inspect.getinnerframes
+logilab.common.pytest: module references __file__
+logilab.common.debugger: module MAY be using inspect.getsource
+logilab.common.modutils: module references __file__
+logilab.common.modutils: module references __path__
+logilab.common.registry: module references __file__
+logilab.common.test.unittest_fileutils: module references __file__
+logilab.common.test.unittest_testlib: module references __file__
+logilab.common.test.unittest_umessage: module references __file__
+logilab.common.test.unittest_configuration: module references __file__
+logilab.common.test.unittest_changelog: module references __file__
+logilab.common.test.unittest_modutils: module references __file__
+logilab.common.test.unittest_modutils: module references __path__
+logilab.common.test.unittest_shellutils: module references __file__
+creating /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/logilab_common-0.63.2-py2.7.egg
+Extracting logilab_common-0.63.2-py2.7.egg to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Adding logilab-common 0.63.2 to easy-install.pth file
+Installing pytest script to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin
+
+Installed /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/logilab_common-0.63.2-py2.7.egg
+Searching for six>=1.4.0
+Reading https://pypi.python.org/simple/six/
+Best match: six 1.9.0
+Downloading https://pypi.python.org/packages/source/s/six/six-1.9.0.tar.gz#md5=476881ef4012262dfc8adc645ee786c4
+Processing six-1.9.0.tar.gz
+Writing /tmp/easy_install-HixJ8X/six-1.9.0/setup.cfg
+Running six-1.9.0/setup.py -q bdist_egg --dist-dir /tmp/easy_install-HixJ8X/six-1.9.0/egg-dist-tmp-GeyBC8
+no previously-included directories found matching 'documentation/_build'
+zip_safe flag not set; analyzing archive contents...
+six: module references __path__
+creating /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/six-1.9.0-py2.7.egg
+Extracting six-1.9.0-py2.7.egg to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Adding six 1.9.0 to easy-install.pth file
+
+Installed /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/six-1.9.0-py2.7.egg
+Finished processing dependencies for letsencrypt[testing]
+[1mlint runtests: commands[1] | pylint --rcfile=.pylintrc letsencrypt[0m
+************* Module letsencrypt.client.apache.dvsni
+R:  1, 0: Similar lines in 2 files
+==letsencrypt.client.tests.le_util_test:1
+==letsencrypt.client.tests.reverter_test:2
+import os
+import shutil
+import tempfile
+import unittest
+
+import mock
+
+ (duplicate-code)
+
+
+Report
+======
+3428 statements analysed.
+
+Statistics by type
+------------------
+
++---------+-------+-----------+-----------+------------+---------+
+|type     |number |old number |difference |%documented |%badname |
++=========+=======+===========+===========+============+=========+
+|module   |46     |NC         |NC         |100.00      |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|class    |66     |NC         |NC         |100.00      |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|method   |377    |NC         |NC         |93.63       |1.06     |
++---------+-------+-----------+-----------+------------+---------+
+|function |75     |NC         |NC         |94.67       |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+
+
+
+Duplication
+-----------
+
++-------------------------+------+---------+-----------+
+|                         |now   |previous |difference |
++=========================+======+=========+===========+
+|nb duplicated lines      |8     |NC       |NC         |
++-------------------------+------+---------+-----------+
+|percent duplicated lines |0.100 |NC       |NC         |
++-------------------------+------+---------+-----------+
+
+
+
+External dependencies
+---------------------
+::
+
+    Crypto 
+      \-Hash 
+      | \-SHA256 (letsencrypt.client.crypto_util)
+      \-PublicKey 
+      | \-RSA (letsencrypt.client.crypto_util)
+      \-Random (letsencrypt.client.crypto_util,letsencrypt.client.challenge_util)
+      \-Signature 
+        \-PKCS1_v1_5 (letsencrypt.client.crypto_util)
+    M2Crypto (letsencrypt.client.crypto_util,letsencrypt.client.tests.challenge_util_test,letsencrypt.client.client,letsencrypt.client.revoker,letsencrypt.client.tests.crypto_util_test)
+    augeas (letsencrypt.client.tests.apache.parser_test,letsencrypt.client.augeas_configurator)
+    binascii (letsencrypt.client.crypto_util)
+    datetime (letsencrypt.client.tests.crypto_util_test)
+    dialog (letsencrypt.client.log,letsencrypt.client.interactive_challenge,letsencrypt.client.display,letsencrypt.client.recovery_contact_challenge)
+    jsonschema (letsencrypt.client.tests.acme_test,letsencrypt.client.acme,letsencrypt.client.network)
+    letsencrypt 
+      \-client 
+        \-CONFIG (letsencrypt.client.tests.challenge_util_test,letsencrypt.client.client,letsencrypt.client.apache.dvsni,letsencrypt.client.tests.acme_util,letsencrypt.client.revoker,letsencrypt.client.crypto_util,letsencrypt.client.auth_handler,letsencrypt.client.display,letsencrypt.client.apache.configurator,letsencrypt.client.recovery_token,letsencrypt.client.challenge_util,letsencrypt.client.reverter,letsencrypt.client.augeas_configurator,letsencrypt.client.tests.apache.util,letsencrypt.scripts.main,letsencrypt.client.tests.apache.dvsni_test)
+        \-acme (letsencrypt.client.auth_handler,letsencrypt.client.network,letsencrypt.client.client,letsencrypt.client.revoker,letsencrypt.client.tests.acme_test)
+        \-apache 
+        | \-configurator (letsencrypt.client.client,letsencrypt.client.tests.apache.configurator_test,letsencrypt.client.tests.apache.util)
+        | \-obj (letsencrypt.client.tests.apache.configurator_test,letsencrypt.client.apache.configurator,letsencrypt.client.tests.apache.util,letsencrypt.client.tests.apache.dvsni_test,letsencrypt.client.tests.apache.obj_test)
+        | \-parser (letsencrypt.client.tests.apache.parser_test,letsencrypt.client.apache.dvsni,letsencrypt.client.tests.apache.configurator_test,letsencrypt.client.apache.configurator)
+        \-augeas_configurator (letsencrypt.client.apache.configurator)
+        \-auth_handler (letsencrypt.client.tests.auth_handler_test,letsencrypt.client.client)
+        \-challenge_util (letsencrypt.client.tests.client_authenticator_test,letsencrypt.client.tests.apache.dvsni_test,letsencrypt.client.auth_handler,letsencrypt.client.tests.challenge_util_test,letsencrypt.client.tests.apache.configurator_test,letsencrypt.client.apache.dvsni,letsencrypt.client.tests.recovery_token_test,letsencrypt.client.client_authenticator,letsencrypt.client.apache.configurator)
+        \-client (letsencrypt.client.tests.challenge_util_test,letsencrypt.client.tests.client_test,letsencrypt.client.tests.apache.configurator_test,letsencrypt.client.tests.apache.dvsni_test,letsencrypt.scripts.main)
+        \-client_authenticator (letsencrypt.client.client,letsencrypt.client.tests.client_authenticator_test)
+        \-crypto_util (letsencrypt.client.challenge_util,letsencrypt.client.client,letsencrypt.client.acme,letsencrypt.client.revoker,letsencrypt.client.tests.crypto_util_test)
+        \-display (letsencrypt.client.log,letsencrypt.client.tests.apache.parser_test,letsencrypt.client.revoker,letsencrypt.scripts.main)
+        \-errors (letsencrypt.client.tests.client_test,letsencrypt.client.client,letsencrypt.client.tests.client_authenticator_test,letsencrypt.client.network,letsencrypt.client.auth_handler,letsencrypt.client.apache.parser,letsencrypt.client.apache.configurator,letsencrypt.client.tests.auth_handler_test,letsencrypt.client.tests.apache.configurator_test,letsencrypt.client.le_util,letsencrypt.client.reverter,letsencrypt.client.tests.apache.parser_test,letsencrypt.client.client_authenticator,letsencrypt.client.tests.reverter_test,letsencrypt.scripts.main)
+        \-interfaces (letsencrypt.client.interactive_challenge,letsencrypt.client.revoker,letsencrypt.client.display,letsencrypt.client.client,letsencrypt.client.recovery_contact_challenge,letsencrypt.client.recovery_token,letsencrypt.client.client_authenticator,letsencrypt.client.apache.configurator,letsencrypt.scripts.main)
+        \-le_util (letsencrypt.client.tests.challenge_util_test,letsencrypt.client.client,letsencrypt.client.acme,letsencrypt.client.crypto_util,letsencrypt.client.recovery_token,letsencrypt.client.challenge_util,letsencrypt.client.reverter,letsencrypt.client.apache.configurator,letsencrypt.client.tests.le_util_test)
+        \-log (letsencrypt.client.tests.log_test,letsencrypt.scripts.main)
+        \-network (letsencrypt.client.client,letsencrypt.client.revoker)
+        \-recovery_token (letsencrypt.client.client_authenticator,letsencrypt.client.tests.recovery_token_test)
+        \-reverter (letsencrypt.client.client,letsencrypt.client.augeas_configurator,letsencrypt.client.tests.reverter_test)
+        \-revoker (letsencrypt.client.client)
+        \-tests 
+          \-acme_util (letsencrypt.client.tests.auth_handler_test)
+          \-apache 
+            \-util (letsencrypt.client.tests.apache.parser_test,letsencrypt.client.tests.apache.configurator_test,letsencrypt.client.tests.apache.dvsni_test)
+    mock (letsencrypt.client.tests.client_test,letsencrypt.client.tests.client_authenticator_test,letsencrypt.client.tests.apache.dvsni_test,letsencrypt.client.tests.apache.util,letsencrypt.client.tests.reverter_test,letsencrypt.client.tests.challenge_util_test,letsencrypt.client.tests.auth_handler_test,letsencrypt.client.tests.apache.configurator_test,letsencrypt.client.tests.recovery_token_test,letsencrypt.client.tests.apache.parser_test,letsencrypt.client.tests.log_test,letsencrypt.client.tests.le_util_test)
+    os (letsencrypt.client.tests.challenge_util_test,letsencrypt.client.client,letsencrypt.client.apache.configurator,letsencrypt.client.revoker,letsencrypt.client.apache.parser,letsencrypt.client.tests.apache.util,letsencrypt.client.recovery_token,letsencrypt.client.tests.apache.configurator_test,letsencrypt.client.apache.dvsni,letsencrypt.scripts.main,letsencrypt.client.reverter,letsencrypt.client.tests.recovery_token_test,letsencrypt.client.tests.crypto_util_test,letsencrypt.client.tests.apache.parser_test,letsencrypt.client.tests.reverter_test,letsencrypt.client.le_util,letsencrypt.client.tests.le_util_test)
+      \-path (letsencrypt.client.CONFIG)
+    pkg_resources (letsencrypt.client.acme,letsencrypt.client.tests.apache.dvsni_test,letsencrypt.client.apache.configurator,letsencrypt.client.tests.challenge_util_test,letsencrypt.client.tests.acme_test,letsencrypt.client.tests.crypto_util_test,letsencrypt.client.tests.apache.util)
+    re (letsencrypt.client.tests.challenge_util_test,letsencrypt.client.tests.apache.configurator_test,letsencrypt.client.apache.configurator,letsencrypt.client.apache.parser)
+    requests (letsencrypt.client.network,letsencrypt.client.recovery_contact_challenge)
+    stat (letsencrypt.client.le_util)
+    time (letsencrypt.client.crypto_util,letsencrypt.client.network,letsencrypt.client.recovery_contact_challenge,letsencrypt.client.reverter)
+    zope 
+      \-component (letsencrypt.client.tests.client_test,letsencrypt.client.client,letsencrypt.client.revoker,letsencrypt.client.recovery_token,letsencrypt.client.tests.apache.parser_test,letsencrypt.scripts.main)
+      \-interface (letsencrypt.client.interactive_challenge,letsencrypt.client.interfaces,letsencrypt.client.display,letsencrypt.client.recovery_contact_challenge,letsencrypt.client.client_authenticator,letsencrypt.client.apache.configurator,letsencrypt.scripts.main)
+
+
+
+Messages by category
+--------------------
+
++-----------+-------+---------+-----------+
+|type       |number |previous |difference |
++===========+=======+=========+===========+
+|convention |0      |NC       |NC         |
++-----------+-------+---------+-----------+
+|refactor   |1      |NC       |NC         |
++-----------+-------+---------+-----------+
+|warning    |0      |NC       |NC         |
++-----------+-------+---------+-----------+
+|error      |0      |NC       |NC         |
++-----------+-------+---------+-----------+
+
+
+
+Messages
+--------
+
++---------------+------------+
+|message id     |occurrences |
++===============+============+
+|duplicate-code |1           |
++---------------+------------+
+
+
+
+Global evaluation
+-----------------
+Your code has been rated at 10.00/10
+
+Raw metrics
+-----------
+
++----------+-------+------+---------+-----------+
+|type      |number |%     |previous |difference |
++==========+=======+======+=========+===========+
+|code      |3956   |56.00 |NC       |NC         |
++----------+-------+------+---------+-----------+
+|docstring |2181   |30.87 |NC       |NC         |
++----------+-------+------+---------+-----------+
+|comment   |329    |4.66  |NC       |NC         |
++----------+-------+------+---------+-----------+
+|empty     |598    |8.47  |NC       |NC         |
++----------+-------+------+---------+-----------+
+
+
+
+[31mERROR: InvocationError: '/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin/pylint --rcfile=.pylintrc letsencrypt'[0m
+___________________________________ summary ____________________________________
+[31mERROR:   lint: commands failed[0m
+
+[31;1mThe command "tox" failed. Retrying, 2 of 3.[0m
+
+[1mGLOB sdist-make: /home/travis/build/letsencrypt/lets-encrypt-preview/setup.py[0m
+[1mlint inst-nodeps: /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/dist/letsencrypt-0.1.zip[0m
+[1mlint runtests: PYTHONHASHSEED='1729801600'[0m
+[1mlint runtests: commands[0] | python setup.py dev[0m
+running develop
+running egg_info
+writing dependency_links to letsencrypt.egg-info/dependency_links.txt
+writing letsencrypt.egg-info/PKG-INFO
+writing requirements to letsencrypt.egg-info/requires.txt
+writing top-level names to letsencrypt.egg-info/top_level.txt
+writing entry points to letsencrypt.egg-info/entry_points.txt
+reading manifest file 'letsencrypt.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+writing manifest file 'letsencrypt.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/letsencrypt.egg-link (link to .)
+Adding letsencrypt 0.1 to easy-install.pth file
+Installing letsencrypt script to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin
+
+Installed /home/travis/build/letsencrypt/lets-encrypt-preview
+Processing dependencies for letsencrypt==0.1
+Searching for M2Crypto==0.22.3
+Best match: M2Crypto 0.22.3
+Adding M2Crypto 0.22.3 to easy-install.pth file
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Searching for zope.interface==4.1.2
+Best match: zope.interface 4.1.2
+Adding zope.interface 4.1.2 to easy-install.pth file
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Searching for zope.component==4.2.1
+Best match: zope.component 4.2.1
+Adding zope.component 4.2.1 to easy-install.pth file
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Searching for requests==2.5.1
+Best match: requests 2.5.1
+Adding requests 2.5.1 to easy-install.pth file
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Searching for python2-pythondialog==3.0.1
+Best match: python2-pythondialog 3.0.1
+Adding python2-pythondialog 3.0.1 to easy-install.pth file
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Searching for python-augeas==0.5.0
+Best match: python-augeas 0.5.0
+Adding python-augeas 0.5.0 to easy-install.pth file
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Searching for pycrypto==2.6.1
+Best match: pycrypto 2.6.1
+Adding pycrypto 2.6.1 to easy-install.pth file
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Searching for mock==1.0.1
+Best match: mock 1.0.1
+Adding mock 1.0.1 to easy-install.pth file
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Searching for jsonschema==2.4.0
+Best match: jsonschema 2.4.0
+Adding jsonschema 2.4.0 to easy-install.pth file
+Installing jsonschema script to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Searching for argparse==1.3.0
+Best match: argparse 1.3.0
+Adding argparse 1.3.0 to easy-install.pth file
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Searching for setuptools==11.0
+Best match: setuptools 11.0
+Adding setuptools 11.0 to easy-install.pth file
+Installing easy_install script to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin
+Installing easy_install-3.4 script to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Searching for zope.event==4.0.3
+Best match: zope.event 4.0.3
+Adding zope.event 4.0.3 to easy-install.pth file
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Finished processing dependencies for letsencrypt==0.1
+running easy_install
+Searching for letsencrypt[testing]
+Best match: letsencrypt 0.1
+Removing letsencrypt 0.1 from easy-install.pth file
+Adding letsencrypt 0.1 to easy-install.pth file
+Installing letsencrypt script to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Processing dependencies for letsencrypt[testing]
+Finished processing dependencies for letsencrypt[testing]
+[1mlint runtests: commands[1] | pylint --rcfile=.pylintrc letsencrypt[0m
+************* Module letsencrypt.client.apache.dvsni
+R:  1, 0: Similar lines in 2 files
+==letsencrypt.client.tests.le_util_test:1
+==letsencrypt.client.tests.reverter_test:2
+import os
+import shutil
+import tempfile
+import unittest
+
+import mock
+
+ (duplicate-code)
+
+
+Report
+======
+3428 statements analysed.
+
+Statistics by type
+------------------
+
++---------+-------+-----------+-----------+------------+---------+
+|type     |number |old number |difference |%documented |%badname |
++=========+=======+===========+===========+============+=========+
+|module   |46     |46         |=          |100.00      |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|class    |66     |66         |=          |100.00      |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|method   |377    |377        |=          |93.63       |1.06     |
++---------+-------+-----------+-----------+------------+---------+
+|function |75     |75         |=          |94.67       |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+
+
+
+Duplication
+-----------
+
++-------------------------+------+---------+-----------+
+|                         |now   |previous |difference |
++=========================+======+=========+===========+
+|nb duplicated lines      |8     |8        |=          |
++-------------------------+------+---------+-----------+
+|percent duplicated lines |0.100 |0.100    |=          |
++-------------------------+------+---------+-----------+
+
+
+
+External dependencies
+---------------------
+::
+
+    Crypto 
+      \-Hash 
+      | \-SHA256 (letsencrypt.client.crypto_util)
+      \-PublicKey 
+      | \-RSA (letsencrypt.client.crypto_util)
+      \-Random (letsencrypt.client.crypto_util,letsencrypt.client.challenge_util)
+      \-Signature 
+        \-PKCS1_v1_5 (letsencrypt.client.crypto_util)
+    M2Crypto (letsencrypt.client.client,letsencrypt.client.crypto_util,letsencrypt.client.revoker,letsencrypt.client.tests.challenge_util_test,letsencrypt.client.tests.crypto_util_test)
+    augeas (letsencrypt.client.augeas_configurator,letsencrypt.client.tests.apache.parser_test)
+    binascii (letsencrypt.client.crypto_util)
+    datetime (letsencrypt.client.tests.crypto_util_test)
+    dialog (letsencrypt.client.display,letsencrypt.client.interactive_challenge,letsencrypt.client.recovery_contact_challenge,letsencrypt.client.log)
+    jsonschema (letsencrypt.client.network,letsencrypt.client.acme,letsencrypt.client.tests.acme_test)
+    letsencrypt 
+      \-client 
+        \-CONFIG (letsencrypt.client.augeas_configurator,letsencrypt.client.reverter,letsencrypt.client.tests.apache.dvsni_test,letsencrypt.client.apache.configurator,letsencrypt.client.tests.acme_util,letsencrypt.client.crypto_util,letsencrypt.client.recovery_token,letsencrypt.client.challenge_util,letsencrypt.client.revoker,letsencrypt.client.client,letsencrypt.client.tests.challenge_util_test,letsencrypt.scripts.main,letsencrypt.client.auth_handler,letsencrypt.client.display,letsencrypt.client.tests.apache.util,letsencrypt.client.apache.dvsni)
+        \-acme (letsencrypt.client.client,letsencrypt.client.network,letsencrypt.client.revoker,letsencrypt.client.auth_handler,letsencrypt.client.tests.acme_test)
+        \-apache 
+        | \-configurator (letsencrypt.client.client,letsencrypt.client.tests.apache.configurator_test,letsencrypt.client.tests.apache.util)
+        | \-obj (letsencrypt.client.tests.apache.dvsni_test,letsencrypt.client.tests.apache.obj_test,letsencrypt.client.tests.apache.configurator_test,letsencrypt.client.tests.apache.util,letsencrypt.client.apache.configurator)
+        | \-parser (letsencrypt.client.tests.apache.parser_test,letsencrypt.client.tests.apache.configurator_test,letsencrypt.client.apache.configurator,letsencrypt.client.apache.dvsni)
+        \-augeas_configurator (letsencrypt.client.apache.configurator)
+        \-auth_handler (letsencrypt.client.client,letsencrypt.client.tests.auth_handler_test)
+        \-challenge_util (letsencrypt.client.tests.apache.dvsni_test,letsencrypt.client.tests.apache.configurator_test,letsencrypt.client.apache.configurator,letsencrypt.client.client_authenticator,letsencrypt.client.auth_handler,letsencrypt.client.tests.client_authenticator_test,letsencrypt.client.tests.challenge_util_test,letsencrypt.client.tests.recovery_token_test,letsencrypt.client.apache.dvsni)
+        \-client (letsencrypt.client.tests.challenge_util_test,letsencrypt.client.tests.client_test,letsencrypt.scripts.main,letsencrypt.client.tests.apache.configurator_test,letsencrypt.client.tests.apache.dvsni_test)
+        \-client_authenticator (letsencrypt.client.client,letsencrypt.client.tests.client_authenticator_test)
+        \-crypto_util (letsencrypt.client.client,letsencrypt.client.acme,letsencrypt.client.revoker,letsencrypt.client.challenge_util,letsencrypt.client.tests.crypto_util_test)
+        \-display (letsencrypt.client.tests.apache.parser_test,letsencrypt.scripts.main,letsencrypt.client.log,letsencrypt.client.revoker)
+        \-errors (letsencrypt.client.reverter,letsencrypt.client.tests.apache.configurator_test,letsencrypt.client.apache.configurator,letsencrypt.client.network,letsencrypt.client.tests.auth_handler_test,letsencrypt.client.client_authenticator,letsencrypt.client.apache.parser,letsencrypt.client.client,letsencrypt.client.tests.client_test,letsencrypt.scripts.main,letsencrypt.client.auth_handler,letsencrypt.client.tests.client_authenticator_test,letsencrypt.client.tests.apache.parser_test,letsencrypt.client.tests.reverter_test,letsencrypt.client.le_util)
+        \-interfaces (letsencrypt.client.interactive_challenge,letsencrypt.client.apache.configurator,letsencrypt.client.client_authenticator,letsencrypt.client.recovery_contact_challenge,letsencrypt.client.revoker,letsencrypt.client.client,letsencrypt.scripts.main,letsencrypt.client.display,letsencrypt.client.recovery_token)
+        \-le_util (letsencrypt.client.reverter,letsencrypt.client.apache.configurator,letsencrypt.client.acme,letsencrypt.client.crypto_util,letsencrypt.client.recovery_token,letsencrypt.client.challenge_util,letsencrypt.client.client,letsencrypt.client.tests.le_util_test,letsencrypt.client.tests.challenge_util_test)
+        \-log (letsencrypt.scripts.main,letsencrypt.client.tests.log_test)
+        \-network (letsencrypt.client.client,letsencrypt.client.revoker)
+        \-recovery_token (letsencrypt.client.client_authenticator,letsencrypt.client.tests.recovery_token_test)
+        \-reverter (letsencrypt.client.augeas_configurator,letsencrypt.client.client,letsencrypt.client.tests.reverter_test)
+        \-revoker (letsencrypt.client.client)
+        \-tests 
+          \-acme_util (letsencrypt.client.tests.auth_handler_test)
+          \-apache 
+            \-util (letsencrypt.client.tests.apache.parser_test,letsencrypt.client.tests.apache.dvsni_test,letsencrypt.client.tests.apache.configurator_test)
+    mock (letsencrypt.client.tests.apache.dvsni_test,letsencrypt.client.tests.apache.configurator_test,letsencrypt.client.tests.log_test,letsencrypt.client.tests.auth_handler_test,letsencrypt.client.tests.apache.util,letsencrypt.client.tests.apache.parser_test,letsencrypt.client.tests.client_test,letsencrypt.client.tests.le_util_test,letsencrypt.client.tests.client_authenticator_test,letsencrypt.client.tests.challenge_util_test,letsencrypt.client.tests.recovery_token_test,letsencrypt.client.tests.reverter_test)
+    os (letsencrypt.client.reverter,letsencrypt.client.tests.apache.configurator_test,letsencrypt.client.apache.configurator,letsencrypt.client.apache.dvsni,letsencrypt.client.recovery_token,letsencrypt.client.apache.parser,letsencrypt.client.revoker,letsencrypt.client.tests.apache.util,letsencrypt.client.client,letsencrypt.scripts.main,letsencrypt.client.tests.le_util_test,letsencrypt.client.tests.challenge_util_test,letsencrypt.client.tests.recovery_token_test,letsencrypt.client.tests.apache.parser_test,letsencrypt.client.tests.reverter_test,letsencrypt.client.le_util,letsencrypt.client.tests.crypto_util_test)
+      \-path (letsencrypt.client.CONFIG)
+    pkg_resources (letsencrypt.client.acme,letsencrypt.client.tests.acme_test,letsencrypt.client.apache.configurator,letsencrypt.client.tests.apache.dvsni_test,letsencrypt.client.tests.challenge_util_test,letsencrypt.client.tests.apache.util,letsencrypt.client.tests.crypto_util_test)
+    re (letsencrypt.client.tests.challenge_util_test,letsencrypt.client.tests.apache.configurator_test,letsencrypt.client.apache.configurator,letsencrypt.client.apache.parser)
+    requests (letsencrypt.client.network,letsencrypt.client.recovery_contact_challenge)
+    stat (letsencrypt.client.le_util)
+    time (letsencrypt.client.network,letsencrypt.client.reverter,letsencrypt.client.recovery_contact_challenge,letsencrypt.client.crypto_util)
+    zope 
+      \-component (letsencrypt.client.tests.apache.parser_test,letsencrypt.client.recovery_token,letsencrypt.client.revoker,letsencrypt.client.client,letsencrypt.client.tests.client_test,letsencrypt.scripts.main)
+      \-interface (letsencrypt.client.interactive_challenge,letsencrypt.client.apache.configurator,letsencrypt.client.client_authenticator,letsencrypt.client.recovery_contact_challenge,letsencrypt.client.interfaces,letsencrypt.scripts.main,letsencrypt.client.display)
+
+
+
+Messages by category
+--------------------
+
++-----------+-------+---------+-----------+
+|type       |number |previous |difference |
++===========+=======+=========+===========+
+|convention |0      |0        |=          |
++-----------+-------+---------+-----------+
+|refactor   |1      |1        |=          |
++-----------+-------+---------+-----------+
+|warning    |0      |0        |=          |
++-----------+-------+---------+-----------+
+|error      |0      |0        |=          |
++-----------+-------+---------+-----------+
+
+
+
+Messages
+--------
+
++---------------+------------+
+|message id     |occurrences |
++===============+============+
+|duplicate-code |1           |
++---------------+------------+
+
+
+
+Global evaluation
+-----------------
+Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
+
+Raw metrics
+-----------
+
++----------+-------+------+---------+-----------+
+|type      |number |%     |previous |difference |
++==========+=======+======+=========+===========+
+|code      |3956   |56.00 |3956     |=          |
++----------+-------+------+---------+-----------+
+|docstring |2181   |30.87 |2181     |=          |
++----------+-------+------+---------+-----------+
+|comment   |329    |4.66  |329      |=          |
++----------+-------+------+---------+-----------+
+|empty     |598    |8.47  |598      |=          |
++----------+-------+------+---------+-----------+
+
+
+
+[31mERROR: InvocationError: '/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin/pylint --rcfile=.pylintrc letsencrypt'[0m
+___________________________________ summary ____________________________________
+[31mERROR:   lint: commands failed[0m
+
+[31;1mThe command "tox" failed. Retrying, 3 of 3.[0m
+
+[1mGLOB sdist-make: /home/travis/build/letsencrypt/lets-encrypt-preview/setup.py[0m
+[1mlint inst-nodeps: /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/dist/letsencrypt-0.1.zip[0m
+[1mlint runtests: PYTHONHASHSEED='4121106993'[0m
+[1mlint runtests: commands[0] | python setup.py dev[0m
+running develop
+running egg_info
+writing letsencrypt.egg-info/PKG-INFO
+writing top-level names to letsencrypt.egg-info/top_level.txt
+writing dependency_links to letsencrypt.egg-info/dependency_links.txt
+writing requirements to letsencrypt.egg-info/requires.txt
+writing entry points to letsencrypt.egg-info/entry_points.txt
+reading manifest file 'letsencrypt.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+writing manifest file 'letsencrypt.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages/letsencrypt.egg-link (link to .)
+Adding letsencrypt 0.1 to easy-install.pth file
+Installing letsencrypt script to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin
+
+Installed /home/travis/build/letsencrypt/lets-encrypt-preview
+Processing dependencies for letsencrypt==0.1
+Searching for M2Crypto==0.22.3
+Best match: M2Crypto 0.22.3
+Adding M2Crypto 0.22.3 to easy-install.pth file
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Searching for zope.interface==4.1.2
+Best match: zope.interface 4.1.2
+Adding zope.interface 4.1.2 to easy-install.pth file
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Searching for zope.component==4.2.1
+Best match: zope.component 4.2.1
+Adding zope.component 4.2.1 to easy-install.pth file
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Searching for requests==2.5.1
+Best match: requests 2.5.1
+Adding requests 2.5.1 to easy-install.pth file
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Searching for python2-pythondialog==3.0.1
+Best match: python2-pythondialog 3.0.1
+Adding python2-pythondialog 3.0.1 to easy-install.pth file
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Searching for python-augeas==0.5.0
+Best match: python-augeas 0.5.0
+Adding python-augeas 0.5.0 to easy-install.pth file
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Searching for pycrypto==2.6.1
+Best match: pycrypto 2.6.1
+Adding pycrypto 2.6.1 to easy-install.pth file
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Searching for mock==1.0.1
+Best match: mock 1.0.1
+Adding mock 1.0.1 to easy-install.pth file
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Searching for jsonschema==2.4.0
+Best match: jsonschema 2.4.0
+Adding jsonschema 2.4.0 to easy-install.pth file
+Installing jsonschema script to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Searching for argparse==1.3.0
+Best match: argparse 1.3.0
+Adding argparse 1.3.0 to easy-install.pth file
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Searching for setuptools==11.0
+Best match: setuptools 11.0
+Adding setuptools 11.0 to easy-install.pth file
+Installing easy_install script to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin
+Installing easy_install-3.4 script to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Searching for zope.event==4.0.3
+Best match: zope.event 4.0.3
+Adding zope.event 4.0.3 to easy-install.pth file
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Finished processing dependencies for letsencrypt==0.1
+running easy_install
+Searching for letsencrypt[testing]
+Best match: letsencrypt 0.1
+Removing letsencrypt 0.1 from easy-install.pth file
+Adding letsencrypt 0.1 to easy-install.pth file
+Installing letsencrypt script to /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin
+
+Using /home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/lib/python2.7/site-packages
+Processing dependencies for letsencrypt[testing]
+Finished processing dependencies for letsencrypt[testing]
+[1mlint runtests: commands[1] | pylint --rcfile=.pylintrc letsencrypt[0m
+************* Module letsencrypt.client.apache.dvsni
+R:  1, 0: Similar lines in 2 files
+==letsencrypt.client.tests.le_util_test:1
+==letsencrypt.client.tests.reverter_test:2
+import os
+import shutil
+import tempfile
+import unittest
+
+import mock
+
+ (duplicate-code)
+
+
+Report
+======
+3428 statements analysed.
+
+Statistics by type
+------------------
+
++---------+-------+-----------+-----------+------------+---------+
+|type     |number |old number |difference |%documented |%badname |
++=========+=======+===========+===========+============+=========+
+|module   |46     |46         |=          |100.00      |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|class    |66     |66         |=          |100.00      |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|method   |377    |377        |=          |93.63       |1.06     |
++---------+-------+-----------+-----------+------------+---------+
+|function |75     |75         |=          |94.67       |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+
+
+
+Duplication
+-----------
+
++-------------------------+------+---------+-----------+
+|                         |now   |previous |difference |
++=========================+======+=========+===========+
+|nb duplicated lines      |8     |8        |=          |
++-------------------------+------+---------+-----------+
+|percent duplicated lines |0.100 |0.100    |=          |
++-------------------------+------+---------+-----------+
+
+
+
+External dependencies
+---------------------
+::
+
+    Crypto 
+      \-Hash 
+      | \-SHA256 (letsencrypt.client.crypto_util)
+      \-PublicKey 
+      | \-RSA (letsencrypt.client.crypto_util)
+      \-Random (letsencrypt.client.challenge_util,letsencrypt.client.crypto_util)
+      \-Signature 
+        \-PKCS1_v1_5 (letsencrypt.client.crypto_util)
+    M2Crypto (letsencrypt.client.tests.crypto_util_test,letsencrypt.client.crypto_util,letsencrypt.client.client,letsencrypt.client.tests.challenge_util_test,letsencrypt.client.revoker)
+    augeas (letsencrypt.client.tests.apache.parser_test,letsencrypt.client.augeas_configurator)
+    binascii (letsencrypt.client.crypto_util)
+    datetime (letsencrypt.client.tests.crypto_util_test)
+    dialog (letsencrypt.client.log,letsencrypt.client.interactive_challenge,letsencrypt.client.recovery_contact_challenge,letsencrypt.client.display)
+    jsonschema (letsencrypt.client.acme,letsencrypt.client.tests.acme_test,letsencrypt.client.network)
+    letsencrypt 
+      \-client 
+        \-CONFIG (letsencrypt.client.recovery_token,letsencrypt.client.apache.dvsni,letsencrypt.client.tests.acme_util,letsencrypt.client.tests.apache.dvsni_test,letsencrypt.client.auth_handler,letsencrypt.client.apache.configurator,letsencrypt.client.display,letsencrypt.client.challenge_util,letsencrypt.client.tests.challenge_util_test,letsencrypt.client.reverter,letsencrypt.client.client,letsencrypt.client.revoker,letsencrypt.client.crypto_util,letsencrypt.scripts.main,letsencrypt.client.tests.apache.util,letsencrypt.client.augeas_configurator)
+        \-acme (letsencrypt.client.tests.acme_test,letsencrypt.client.auth_handler,letsencrypt.client.client,letsencrypt.client.network,letsencrypt.client.revoker)
+        \-apache 
+        | \-configurator (letsencrypt.client.client,letsencrypt.client.tests.apache.util,letsencrypt.client.tests.apache.configurator_test)
+        | \-obj (letsencrypt.client.apache.configurator,letsencrypt.client.tests.apache.configurator_test,letsencrypt.client.tests.apache.util,letsencrypt.client.tests.apache.obj_test,letsencrypt.client.tests.apache.dvsni_test)
+        | \-parser (letsencrypt.client.apache.dvsni,letsencrypt.client.tests.apache.parser_test,letsencrypt.client.apache.configurator,letsencrypt.client.tests.apache.configurator_test)
+        \-augeas_configurator (letsencrypt.client.apache.configurator)
+        \-auth_handler (letsencrypt.client.tests.auth_handler_test,letsencrypt.client.client)
+        \-challenge_util (letsencrypt.client.tests.client_authenticator_test,letsencrypt.client.tests.apache.configurator_test,letsencrypt.client.tests.recovery_token_test,letsencrypt.client.auth_handler,letsencrypt.client.apache.configurator,letsencrypt.client.apache.dvsni,letsencrypt.client.tests.challenge_util_test,letsencrypt.client.tests.apache.dvsni_test,letsencrypt.client.client_authenticator)
+        \-client (letsencrypt.client.tests.client_test,letsencrypt.client.tests.challenge_util_test,letsencrypt.client.tests.apache.dvsni_test,letsencrypt.client.tests.apache.configurator_test,letsencrypt.scripts.main)
+        \-client_authenticator (letsencrypt.client.tests.client_authenticator_test,letsencrypt.client.client)
+        \-crypto_util (letsencrypt.client.challenge_util,letsencrypt.client.tests.crypto_util_test,letsencrypt.client.acme,letsencrypt.client.client,letsencrypt.client.revoker)
+        \-display (letsencrypt.client.log,letsencrypt.client.revoker,letsencrypt.client.tests.apache.parser_test,letsencrypt.scripts.main)
+        \-errors (letsencrypt.client.tests.auth_handler_test,letsencrypt.client.tests.client_authenticator_test,letsencrypt.client.tests.apache.parser_test,letsencrypt.client.network,letsencrypt.client.apache.configurator,letsencrypt.client.auth_handler,letsencrypt.client.tests.reverter_test,letsencrypt.scripts.main,letsencrypt.client.tests.client_test,letsencrypt.client.client,letsencrypt.client.apache.parser,letsencrypt.client.reverter,letsencrypt.client.tests.apache.configurator_test,letsencrypt.client.client_authenticator,letsencrypt.client.le_util)
+        \-interfaces (letsencrypt.client.recovery_token,letsencrypt.client.recovery_contact_challenge,letsencrypt.client.apache.configurator,letsencrypt.client.display,letsencrypt.client.interactive_challenge,letsencrypt.client.revoker,letsencrypt.scripts.main,letsencrypt.client.client,letsencrypt.client.client_authenticator)
+        \-le_util (letsencrypt.client.recovery_token,letsencrypt.client.acme,letsencrypt.client.apache.configurator,letsencrypt.client.challenge_util,letsencrypt.client.tests.challenge_util_test,letsencrypt.client.client,letsencrypt.client.reverter,letsencrypt.client.crypto_util,letsencrypt.client.tests.le_util_test)
+        \-log (letsencrypt.client.tests.log_test,letsencrypt.scripts.main)
+        \-network (letsencrypt.client.client,letsencrypt.client.revoker)
+        \-recovery_token (letsencrypt.client.client_authenticator,letsencrypt.client.tests.recovery_token_test)
+        \-reverter (letsencrypt.client.client,letsencrypt.client.tests.reverter_test,letsencrypt.client.augeas_configurator)
+        \-revoker (letsencrypt.client.client)
+        \-tests 
+          \-acme_util (letsencrypt.client.tests.auth_handler_test)
+          \-apache 
+            \-util (letsencrypt.client.tests.apache.parser_test,letsencrypt.client.tests.apache.configurator_test,letsencrypt.client.tests.apache.dvsni_test)
+    mock (letsencrypt.client.tests.auth_handler_test,letsencrypt.client.tests.client_authenticator_test,letsencrypt.client.tests.apache.configurator_test,letsencrypt.client.tests.recovery_token_test,letsencrypt.client.tests.apache.util,letsencrypt.client.tests.apache.parser_test,letsencrypt.client.tests.reverter_test,letsencrypt.client.tests.client_test,letsencrypt.client.tests.challenge_util_test,letsencrypt.client.tests.apache.dvsni_test,letsencrypt.client.tests.log_test,letsencrypt.client.tests.le_util_test)
+    os (letsencrypt.client.recovery_token,letsencrypt.client.apache.dvsni,letsencrypt.client.tests.apache.parser_test,letsencrypt.client.tests.apache.configurator_test,letsencrypt.client.tests.recovery_token_test,letsencrypt.client.apache.configurator,letsencrypt.client.revoker,letsencrypt.client.tests.reverter_test,letsencrypt.scripts.main,letsencrypt.client.tests.challenge_util_test,letsencrypt.client.client,letsencrypt.client.apache.parser,letsencrypt.client.reverter,letsencrypt.client.tests.crypto_util_test,letsencrypt.client.tests.apache.util,letsencrypt.client.tests.le_util_test,letsencrypt.client.le_util)
+      \-path (letsencrypt.client.CONFIG)
+    pkg_resources (letsencrypt.client.acme,letsencrypt.client.tests.acme_test,letsencrypt.client.apache.configurator,letsencrypt.client.tests.challenge_util_test,letsencrypt.client.tests.apache.dvsni_test,letsencrypt.client.tests.crypto_util_test,letsencrypt.client.tests.apache.util)
+    re (letsencrypt.client.tests.challenge_util_test,letsencrypt.client.tests.apache.configurator_test,letsencrypt.client.apache.configurator,letsencrypt.client.apache.parser)
+    requests (letsencrypt.client.recovery_contact_challenge,letsencrypt.client.network)
+    stat (letsencrypt.client.le_util)
+    time (letsencrypt.client.crypto_util,letsencrypt.client.recovery_contact_challenge,letsencrypt.client.network,letsencrypt.client.reverter)
+    zope 
+      \-component (letsencrypt.client.recovery_token,letsencrypt.client.tests.apache.parser_test,letsencrypt.scripts.main,letsencrypt.client.tests.client_test,letsencrypt.client.client,letsencrypt.client.revoker)
+      \-interface (letsencrypt.client.apache.configurator,letsencrypt.client.display,letsencrypt.client.interactive_challenge,letsencrypt.client.interfaces,letsencrypt.scripts.main,letsencrypt.client.recovery_contact_challenge,letsencrypt.client.client_authenticator)
+
+
+
+Messages by category
+--------------------
+
++-----------+-------+---------+-----------+
+|type       |number |previous |difference |
++===========+=======+=========+===========+
+|convention |0      |0        |=          |
++-----------+-------+---------+-----------+
+|refactor   |1      |1        |=          |
++-----------+-------+---------+-----------+
+|warning    |0      |0        |=          |
++-----------+-------+---------+-----------+
+|error      |0      |0        |=          |
++-----------+-------+---------+-----------+
+
+
+
+Messages
+--------
+
++---------------+------------+
+|message id     |occurrences |
++===============+============+
+|duplicate-code |1           |
++---------------+------------+
+
+
+
+Global evaluation
+-----------------
+Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
+
+Raw metrics
+-----------
+
++----------+-------+------+---------+-----------+
+|type      |number |%     |previous |difference |
++==========+=======+======+=========+===========+
+|code      |3956   |56.00 |3956     |=          |
++----------+-------+------+---------+-----------+
+|docstring |2181   |30.87 |2181     |=          |
++----------+-------+------+---------+-----------+
+|comment   |329    |4.66  |329      |=          |
++----------+-------+------+---------+-----------+
+|empty     |598    |8.47  |598      |=          |
++----------+-------+------+---------+-----------+
+
+
+
+[31mERROR: InvocationError: '/home/travis/build/letsencrypt/lets-encrypt-preview/.tox/lint/bin/pylint --rcfile=.pylintrc letsencrypt'[0m
+___________________________________ summary ____________________________________
+[31mERROR:   lint: commands failed[0m
+
+[31;1mThe command "tox" failed 3 times.[0m
+
+travis_time:end:13156c54:start=1422190600930542543,finish=1422190714207424842,duration=113276882299[0K
+[31;1mThe command "travis_retry tox" exited with 1.[0m
+
+Done. Your build exited with 1.
