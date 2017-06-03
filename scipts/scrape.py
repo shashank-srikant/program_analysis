@@ -9,7 +9,8 @@ handle = open("key.txt","r")
 key = handle.readline()
 handle.close()
 me = travis_user(key)
-url=raw_input("Enter github repository url");
+url=raw_input("Enter github repository url")
+error_type = open('error_list.txt', 'r').read()
 if me.init_repo(url):
     builds = me.get_build()
     print("build retrieved")
@@ -22,20 +23,27 @@ if me.init_repo(url):
                 job = me.user.job(int(job_id))
                 log = job.log.body
                 log = log.encode('utf-8')
-                fh = open(str(job.log_id)+".txt","w+")
-                fh.write(log)
-                fh.close
-                print("Log written")
-            for content in os.listdir(os.getcwd()):
-                try:
-                    text = open(content,'r').read()
-                except:
-                    print('cannot open file, skipping!!')
-                error_type = open('error_list.txt', 'r').read()
                 for error in error_type.split(','):
-                    if (str(error) in text) and error!=' ' and error!='\n':
-                        print get_error_snippet(error, text)
-                        print('-------------------------------------------')
-                fh.close()
+                    if (str(error) in log) and error!=' ' and error!='\n':
+                        error_snippet = get_error_snippet(error, log)
+                        file_h = open(str(job_id)+".txt", "w")
+                        file_h.write(error_snippet)
+                        file_h.close()
+                        print("Log written")   
+                
         else:
             print("Build passed!! no error")
+    
+#    for content in os.listdir(os.getcwd()):
+#                try:
+#                    text = open(content,'r').read()
+#                except:
+#                    print('cannot open file, skipping!!')
+#                file_h = open(me.repo_slug.split('/')[0]+".txt", "w+")
+#                for error in error_type.split(','):
+#                    if (str(error) in text) and error!=' ' and error!='\n':
+#                        error_snippet = get_error_snippet(error, text)
+#                        print('-------------------------------------------')
+#                        file_h.write(error_snippet)
+#                fh.close()
+#                file_h.close()

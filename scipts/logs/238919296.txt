@@ -1,0 +1,5 @@
+e "/Users/travis/build/certbot/certbot/certbot/plugins/standalone_test.py", line 61, in test_run_bind_error
+    challenge_type=challenges.HTTP01)
+AssertionError: StandaloneBindError not raised
+
+------------------------------------------------
