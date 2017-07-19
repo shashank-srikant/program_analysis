@@ -1,0 +1,10 @@
+8:47,077 WARN: org.apache.tajo.querymaster.Stage (getNonLeafTaskNum(1089)) - Task volume is chosen as 64 in unexpected case.
+Used heap: 401.9 MiB/910.5 MiB, direct:1.7 MiB/1.7 MiB, mapped:0 B/0 B, Active Threads: 265, Run: TestSelectQuery.testTimezonedORCTable
+Used heap: 299.4 MiB/910.5 MiB, direct:1.7 MiB/1.7 MiB, mapped:0 B/0 B, Active Threads: 263, Run: TestSelectQuery.testQueryMasterTaskInitError
+Exception in thread "Thread-912" java.lang.AssertionError: expected:<QUERY_ERROR> but was:<QUERY_SUCCEEDED>
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:743)
+	at org.junit.Assert.assertEquals(Assert.java:118)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at org.apache.tajo.engine.query.TestSelectQuery$1.run(TestSelectQuery.java:470)
+Used heap: 302.2 MiB/910.5 MiB, direct:1.7 MiB/1.7 M

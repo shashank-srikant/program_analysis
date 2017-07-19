@@ -13,6 +13,7 @@ import requests, json
 
 def comp_commit(repo_slug,com1, com2):
     url = 'https://api.github.com/repos/' + repo_slug + '/compare/' + com1 + '...' + com2
+    print url
     my_headers = { 'User-agent' : 'Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; rv:1.9.0.5) Gecko/2009011615 Firefox/3.0.5 CometBird/3.0.5' }
     payload = {}
     try:
