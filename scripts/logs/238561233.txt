@@ -1,5 +1,0 @@
-  File "/Users/travis/build/certbot/certbot/acme/acme/standalone_test.py", line 155, in test_it
-    self.assertTrue(max_attempts > 0, "Timeout!")
-AssertionError: False is not true : Timeout!
-
---------------------------------------------------
