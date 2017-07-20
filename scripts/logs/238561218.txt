@@ -1,0 +1,6 @@
+ BaseDualNetworkedServers.__init__(self, *args, **kwargs, server_class=TLSSNI01Server)
+                                                           ^
+SyntaxError: invalid syntax[0m
+Please see the logfile '/tmp/tmp4krf15' for more details.
++true
++
