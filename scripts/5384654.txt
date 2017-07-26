@@ -1,0 +1,11 @@
+ello, SSLv3, TLSv1, TLSv1.1, TLSv1.2]
+2013-09-19 00:36:06.719:INFO:oejs.AbstractConnector:Started SslSelectChannelConnector@0.0.0.0:52854
+2013-09-19 00:36:07.109:INFO:oejsh.ContextHandler:stopped o.e.j.s.ServletContextHandler{/,null}
+Tests run: 200, Failures: 4, Errors: 0, Skipped: 0, Time elapsed: 365.176 sec <<< FAILURE!
+testConnectTimeout(io.airlift.http.client.netty.TestNettyHttpsClient)  Time elapsed: 60.022 sec  <<< FAILURE!
+java.lang.AssertionError: expected:<java.nio.channels.ClosedChannelException> to be an instance of <java.net.SocketTimeoutException>
+	at org.testng.Assert.fail(Assert.java:94)
+	at io.airlift.testing.Assertions.fail(Assertions.java:326)
+	at io.airlift.testing.Assertions.assertInstanceOf(Assertions.java:296)
+	at io.airlift.testing.Assertions.assertInstanceOf(Assertions.java:285)
+	at io.airlift.http.clien

@@ -1,6 +1,0 @@
-on(True, [])
-  File "/home/travis/build/certbot/certbot/certbot/tests/main_test.py", line 744, in _test_renewal_common
-    traceback.format_exc())
-AssertionError: Unexpected renewal error:
-Traceback (most recent call last):
-  File "/home/travis/

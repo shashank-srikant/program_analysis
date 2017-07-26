@@ -1,1 +1,0 @@
-SyntaxError:,ZeroDivisionError:,NameError:,EOFError:,AssertionError:,IndentationError:,ValueError:,

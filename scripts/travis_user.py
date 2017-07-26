@@ -78,6 +78,11 @@ class travis_user(object):
         log_content = log_content.encode('utf-8')
         return log_content
 
+    def getlanguage(self,slug):
+        repo = self.user.repo(slug)
+        last_build = repo.last_build
+        config = last_build.config
+        return config['language']
 #This function extracts all important information corresponding to job_id
 #Input: job_id, string
 #Output: Array of all important information
